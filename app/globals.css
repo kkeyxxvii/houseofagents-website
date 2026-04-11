@@ -1,26 +1,238 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Bdogrotesk (headings) ─────────────────────────────── */
+@font-face {
+  font-family: "Bdogrotesk";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/67c5794fd1d1bc81748c8a9b_BDOGrotesk-Light.woff") format("woff");
+}
+@font-face {
+  font-family: "Bdogrotesk";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/67c5794ff6953fb99cab40a8_BDOGrotesk-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Bdogrotesk";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/67c5794f88f2daf3a7892771_BDOGrotesk-Medium.woff") format("woff");
+}
+@font-face {
+  font-family: "Bdogrotesk";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/67c5794fa9d93eee504e6617_BDOGrotesk-DemiBold.woff") format("woff");
+}
+@font-face {
+  font-family: "Bdogrotesk";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/67c5794f5df3ff38863f984b_BDOGrotesk-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "Bdogrotesk";
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/67c5794fd93c43f8a2b2b459_BDOGrotesk-Black.woff") format("woff");
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Plus Jakarta Sans (body) ──────────────────────────── */
+@font-face {
+  font-family: "Plusjakartasans";
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/6875f60205c7d8588e874d8b_PlusJakartaSans-ExtraLight.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Plusjakartasans";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/6875f602e6b49f4d9a9c705a_PlusJakartaSans-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Plusjakartasans";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/6875f60215758e9c4ec35b0b_PlusJakartaSans-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Plusjakartasans";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/6875f6022caaddd372f3473d_PlusJakartaSans-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Plusjakartasans";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/6875f602267337526b333909_PlusJakartaSans-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Plusjakartasans";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/6875f60221a331314716fee8_PlusJakartaSans-Bold.woff2") format("woff2");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Fragment Mono (monospace) ─────────────────────────── */
+@font-face {
+  font-family: "Fragmentmono";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/67c579ff17dc36a702160701_FragmentMono-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Fragmentmono";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("https://cdn.prod.website-files.com/67c5741832d4da33d634d681/67c579ffc31de9c7b37b0838_FragmentMono-Italic.woff") format("woff");
+}
+
+/* ─── Theme tokens (Tailwind v4 CSS-based config) ────────── */
+@theme {
+  /* Colors */
+  --color-accent: #D95938;
+  --color-accent-dark: #bf4a28;
+  --color-accent-light: #e06e4a;
+  --color-ink: #111111;
+  --color-ink-light: #222222;
+  --color-muted: #555555;
+  --color-muted-light: #888888;
+  --color-surface: #f8f8f8;
+  --color-surface-alt: #f2f2f2;
+  --color-border: #e5e5e5;
+  --color-border-dark: #d0d0d0;
+  --color-tag-bg: #fdf1ee;
+  --color-tag-text: #D95938;
+
+  /* Fonts */
+  --font-primary: "Plusjakartasans", Arial, sans-serif;
+  --font-heading: "Bdogrotesk", Arial, sans-serif;
+  --font-mono: "Fragmentmono", "JetBrains Mono", monospace;
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.875rem;
+  --font-size-3xl: 2.25rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 3.75rem;
+  --font-size-6xl: 4.5rem;
+  --font-size-7xl: 5.5rem;
+
+  /* Border radius */
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
+
+  /* Box shadows */
+  --shadow-accent: 0 4px 24px rgba(217,89,56,0.25);
+  --shadow-card: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-card-hover: 0 8px 32px rgba(0,0,0,0.12);
+
+  /* Animations */
+  --animate-spin-slow: spin 10s linear infinite;
+  --animate-fade-up: fadeUp 0.6s ease forwards;
+  --animate-marquee: marquee 28s linear infinite;
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-primary);
+  color: var(--color-ink);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* H1 headings use Bdogrotesk */
+h1 {
+  font-family: "Bdogrotesk", Arial, sans-serif;
+}
+
+/* ─── Custom scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #5a3019;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover { background: #7a4020; }
+
+/* ─── Container ─────────────────────────────────────────── */
+.container-site {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ─── Keyframes ─────────────────────────────────────────── */
+@keyframes rotateStar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Utility classes ───────────────────────────────────── */
+.star-rotate {
+  animation: rotateStar 10s linear infinite;
+  display: inline-block;
+}
+
+.marquee-inner {
+  display: flex;
+  gap: 3rem;
+  animation: marquee 28s linear infinite;
+  width: max-content;
+}
+.marquee-inner:hover { animation-play-state: paused; }
+
+.card-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+:focus-visible {
+  outline: 0.125rem solid var(--color-accent);
+  outline-offset: 0.125rem;
 }
