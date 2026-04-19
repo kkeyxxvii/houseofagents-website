@@ -236,3 +236,24 @@ h1 {
   outline: 0.125rem solid var(--color-accent);
   outline-offset: 0.125rem;
 }
+
+/* ─── Try-Arya page — responsive ───────────────────────── */
+@media (max-width: 900px) {
+  .ta-hero-grid {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+  .ta-hero-video { display: none !important; }
+  .ta-2col { grid-template-columns: 1fr !important; }
+  .ta-3col { grid-template-columns: 1fr !important; }
+  .ta-stats-grid { grid-template-columns: 1fr !important; }
+  .ta-steps-grid { grid-template-columns: 1fr !important; }
+  .ta-convo-left { display: none !important; }
+  .ta-convo-wrapper { display: block !important; }
+  .ta-talk-grid { grid-template-columns: 1fr !important; }
+  .ta-hero-padding { padding-top: 40px !important; padding-bottom: 40px !important; }
+  .ta-section-padding { padding-top: 64px !important; padding-bottom: 64px !important; }
+  .ta-h1 { font-size: clamp(32px, 8vw, 52px) !important; }
+  .ta-h2 { font-size: clamp(28px, 7vw, 42px) !important; }
+  .container-site { padding-inline: 16px !important; }
+}

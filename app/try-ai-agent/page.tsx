@@ -48,9 +48,24 @@ const features = [
 ];
 
 const stats = [
-  { value: "10,000,000+", label: "AI Calls Made" },
-  { value: "100,000+", label: "Leads Qualified" },
-  { value: "$5M+", label: "Pipeline Bookings Generated" },
+  {
+    sublabel: "Speed to lead",
+    value: "< 8 sec",
+    label: "AI Calls Made",
+    desc: "Arya dials within 8 seconds of a form submission — before any human rep even sees the notification.",
+  },
+  {
+    sublabel: "Inbound conversion",
+    value: "+61%",
+    label: "Leads Qualified",
+    desc: "Decreasing lead response time results in a dramatically better buying experience and higher close rates.",
+  },
+  {
+    sublabel: "Pipeline generated",
+    value: "$5M+",
+    label: "Pipeline Booked",
+    desc: "Clients who deploy Arya see pipeline acceleration within the first 30 days — with zero extra headcount.",
+  },
 ];
 
 const videoCaseTabs = [
@@ -203,6 +218,11 @@ const CALL_SCENARIOS = [
 ];
 const LIVE_METRICS = { calls: 847, qualified: 234, concurrent: 12 };
 
+const maskName = (name: string) =>
+  name.split(" ").map((p) => p[0] + "·".repeat(Math.min(p.length - 1, 4))).join(" ");
+const maskPhone = (phone: string) =>
+  phone.replace(/(\+\d{2})\s?\d{5}(\d{5})/, "$1 ×××××$2");
+
 /* ─── Omni-channel data ─────────────────────────────────── */
 const channels = [
   {
@@ -347,18 +367,44 @@ function StatsBar() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
   return (
-    <section ref={ref} style={{ background: "#D95938", padding: "56px 24px" }}>
+    <section ref={ref} style={{ background: "#0d2b26", padding: "80px 24px" }}>
       <div className="container-site">
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32, textAlign: "center" }}>
+        {/* Heading + CTAs */}
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 56, flexWrap: "wrap", gap: 24 }}>
+          <motion.h2 initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 300, color: "#ffffff", margin: 0, lineHeight: 1.1 }}>
+            Arya&apos;s Average Impact
+          </motion.h2>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }}
+            style={{ display: "flex", gap: 12 }}>
+            <a href="#talk-to-arya" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 24px", fontSize: 14, fontWeight: 400, textTransform: "uppercase", borderRadius: 2, background: "#D95938", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+              Book a Demo
+            </a>
+            <a href="tel:+919873322457" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 24px", fontSize: 14, fontWeight: 400, textTransform: "uppercase", borderRadius: 2, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+              Call Me
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Divider */}
+        <div style={{ height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 56 }} />
+
+        {/* Stats grid */}
+        <div className="ta-stats-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }}>
           {stats.map((s, i) => (
-            <motion.div key={s.label}
-              initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}>
-              <p style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4vw, 56px)", fontWeight: 300, color: "#F8F7F7", margin: 0, lineHeight: 1 }}>
+            <motion.div key={s.sublabel}
+              initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55, delay: 0.1 + i * 0.1 }}
+              style={{ padding: "0 40px 0 0", borderRight: i < stats.length - 1 ? "1px solid rgba(255,255,255,0.1)" : "none", paddingLeft: i > 0 ? 40 : 0 }}>
+              <p style={{ fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.45)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                {s.sublabel}
+              </p>
+              <p style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(48px, 5vw, 72px)", fontWeight: 300, color: "#ffffff", margin: "0 0 16px", lineHeight: 1 }}>
                 {s.value}
               </p>
-              <p style={{ fontSize: 13, fontWeight: 400, color: "rgba(248,247,247,0.75)", marginTop: 8, textTransform: "uppercase", letterSpacing: "0.08em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                {s.label}
+              <p style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", lineHeight: 1.65, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif", maxWidth: 280 }}>
+                {s.desc}
               </p>
             </motion.div>
           ))}
@@ -440,17 +486,17 @@ function LiveActivitySection() {
 
         {/* Conversation Simulator */}
         <motion.div initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.2 }}
-          style={{ maxWidth: 960, margin: "0 auto", border: "1px solid #e5e5e5", borderRadius: 0, overflow: "hidden", display: "flex" }}>
+          className="ta-convo-wrapper" style={{ maxWidth: 960, margin: "0 auto", border: "1px solid #e5e5e5", borderRadius: 0, overflow: "hidden", display: "flex" }}>
 
           {/* Left — call info panel */}
-          <div style={{ width: 260, flexShrink: 0, background: "#0a0a0a", padding: "28px 24px", display: "flex", flexDirection: "column", gap: 24 }}>
+          <div className="ta-convo-left" style={{ width: 260, flexShrink: 0, background: "#0a0a0a", padding: "28px 24px", display: "flex", flexDirection: "column", gap: 24 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#ef4444", display: "inline-block", boxShadow: "0 0 0 3px rgba(239,68,68,0.2)" }} />
               <span style={{ fontSize: 11, fontWeight: 700, color: "#ef4444", letterSpacing: "0.12em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>LIVE CALL</span>
             </div>
             <div>
-              <p style={{ fontSize: 16, fontWeight: 600, color: "#ffffff", margin: "0 0 4px", fontFamily: "Bdogrotesk, Arial, sans-serif" }}>{scenario.caller}</p>
-              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", margin: "0 0 4px", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{scenario.phone}</p>
+              <p style={{ fontSize: 16, fontWeight: 600, color: "#ffffff", margin: "0 0 4px", fontFamily: "Bdogrotesk, Arial, sans-serif" }}>{maskName(scenario.caller)}</p>
+              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", margin: "0 0 4px", fontFamily: "Plusjakartasans, Arial, sans-serif", letterSpacing: "0.04em" }}>{maskPhone(scenario.phone)}</p>
               <p style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{scenario.industry}</p>
             </div>
             <div style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 2, padding: "12px 16px" }}>
@@ -494,7 +540,7 @@ function LiveActivitySection() {
                       border: b.speaker === "arya" ? "1px solid rgba(217,89,56,0.2)" : "1px solid #e8e8e8",
                     }}>
                       <p style={{ fontSize: 11, color: b.speaker === "arya" ? "#D95938" : "#888", margin: "0 0 4px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                        {b.speaker === "arya" ? "Arya" : scenario.caller.split(" ")[0]}
+                        {b.speaker === "arya" ? "Arya" : maskName(scenario.caller.split(" ")[0])}
                       </p>
                       <p style={{ fontSize: 14, color: "#111", margin: 0, lineHeight: 1.55, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{b.text}</p>
                     </div>
@@ -540,7 +586,7 @@ function TheProblemSection() {
         </div>
 
         {/* Problem cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
           {problems.map((p, i) => (
             <motion.div key={p.title}
               initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -587,7 +633,7 @@ function OmniChannelSection() {
         </div>
 
         {/* Channel grid — same format as "Arya is capable of" */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }}>
+        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }}>
           {channels.map((ch, i) => (
             <motion.div key={ch.title}
               initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -650,71 +696,63 @@ function HowAryaWorksSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section ref={ref} style={{ background: "#ffffff", padding: "100px 24px" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#f8f7f7", padding: "100px 24px" }}>
       <div className="container-site">
         {/* Heading */}
-        <div style={{ textAlign: "center", marginBottom: 72 }}>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.05 }}
-            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4.5vw, 64px)", fontWeight: 300, color: "#000000", margin: "0 0 4px", lineHeight: 1.08 }}
-          >
+        <div style={{ marginBottom: 64 }}>
+          <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 300, color: "#000000", margin: "0 0 4px", lineHeight: 1.08 }}>
             She doesn&apos;t just automate.
           </motion.h2>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }}
-            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4.5vw, 64px)", fontWeight: 300, color: "#000000", margin: 0, lineHeight: 1.08 }}
-          >
+          <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.06 }}
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 300, color: "#000000", margin: "0 0 24px", lineHeight: 1.08 }}>
             She <span style={{ color: "#D95938" }}>owns the funnel.</span>
           </motion.h2>
+          <motion.p initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.1 }}
+            style={{ fontSize: 16, color: "#555", lineHeight: 1.7, maxWidth: 560, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+            Every interaction makes her sharper. She learns, remembers, and picks up exactly where she left off — months later.
+          </motion.p>
         </div>
 
-        {/* Two-column: left description, right numbered steps */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, alignItems: "start" }}>
-          {/* Left */}
-          <motion.div
-            initial={{ opacity: 0, x: -24 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.15 }}
-            style={{ position: "sticky", top: 100 }}
-          >
-            <p style={{ fontSize: 17, color: "#444444", lineHeight: 1.75, marginBottom: 40, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-              Every interaction makes her sharper. She learns when people pick up, what they respond to, and how to move the deal forward. She remembers context for months and picks up exactly where she left off.
-            </p>
-            <a
-              href="#hero-form"
-              style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "16px 32px", fontSize: 15, fontWeight: 400, textTransform: "uppercase", borderRadius: 2, background: "#D95938", color: "#F8F7F7", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}
-            >
-              Let Arya Call You
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
-              </svg>
-            </a>
-          </motion.div>
-
-          {/* Right — numbered steps */}
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {howAryaSteps.map((step, i) => (
-              <motion.div
-                key={step.num}
-                initial={{ opacity: 0, x: 24 }} animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.07 }}
-                style={{ display: "flex", gap: 24, padding: "28px 0", borderBottom: i < howAryaSteps.length - 1 ? "1px solid #e5e5e5" : "none" }}
-              >
-                {/* Number */}
-                <span style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 13, fontWeight: 400, color: "#D95938", letterSpacing: "0.04em", flexShrink: 0, paddingTop: 3 }}>
+        {/* 3×2 numbered card grid */}
+        <div className="ta-steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }}>
+          {howAryaSteps.map((step, i) => {
+            const col = i % 3;
+            const row = Math.floor(i / 3);
+            const totalRows = Math.ceil(howAryaSteps.length / 3);
+            return (
+              <motion.div key={step.num}
+                initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.08 + i * 0.06 }}
+                style={{
+                  padding: "36px 32px",
+                  borderRight: col < 2 ? "1px solid #e5e5e5" : "none",
+                  borderBottom: row < totalRows - 1 ? "1px solid #e5e5e5" : "none",
+                  background: "#ffffff",
+                }}>
+                <p style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 36, fontWeight: 300, color: "#D95938", margin: "0 0 20px", lineHeight: 1, opacity: 0.7 }}>
                   {step.num}
-                </span>
-                {/* Content */}
-                <div>
-                  <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 18, fontWeight: 400, color: "#000000", margin: "0 0 8px", lineHeight: 1.3 }}>
-                    {step.title}
-                  </h4>
-                  <p style={{ fontSize: 14, color: "#555555", lineHeight: 1.7, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                    {step.desc}
-                  </p>
-                </div>
+                </p>
+                <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 17, fontWeight: 400, color: "#000000", margin: "0 0 10px", lineHeight: 1.35 }}>
+                  {step.title}
+                </h4>
+                <p style={{ fontSize: 14, color: "#666", lineHeight: 1.7, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                  {step.desc}
+                </p>
               </motion.div>
-            ))}
-          </div>
+            );
+          })}
         </div>
+
+        {/* CTA */}
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.5 }}
+          style={{ marginTop: 48, display: "flex", justifyContent: "flex-start" }}>
+          <a href="#talk-to-arya"
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 32px", fontSize: 14, fontWeight: 400, textTransform: "uppercase", borderRadius: 2, background: "#D95938", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+            Let Arya Call You
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
@@ -899,7 +937,7 @@ function TalkToAryaSection() {
         </div>
 
         {/* 2-col: left = stacked channel cards, right = form */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
+        <div className="ta-talk-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
           {/* Left — 3 large CTA action strips */}
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {talkChannels.map((ch, i) => {
@@ -965,6 +1003,37 @@ function TalkToAryaSection() {
   );
 }
 
+/* ─── Launch Video Section ──────────────────────────────── */
+function LaunchVideoSection() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <section ref={ref} className="ta-section-padding" style={{ background: "#0a0a0a", padding: "100px 24px" }}>
+      <div className="container-site">
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
+          style={{ textAlign: "center", marginBottom: 52 }}>
+          <h2 className="ta-h2" style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 300, color: "#ffffff", margin: "0 0 16px", lineHeight: 1.1 }}>
+            Watch Arya in action.
+          </h2>
+          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.5)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif", lineHeight: 1.6 }}>
+            See how Arya qualifies leads, handles objections, and books meetings — live.
+          </p>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.15 }}
+          style={{ position: "relative", width: "100%", maxWidth: 900, margin: "0 auto", aspectRatio: "16/9", borderRadius: 4, overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)" }}>
+          <iframe
+            src="https://www.veed.io/embed/6ce076d0-0d1b-45d6-bb84-b9d45f2de4c6"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
+            allow="autoplay; fullscreen"
+            allowFullScreen
+          />
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Features Section ──────────────────────────────────── */
 function FeaturesSection() {
   const ref = useRef(null);
@@ -978,7 +1047,7 @@ function FeaturesSection() {
             Arya is capable of
           </motion.h2>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }}>
+        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }}>
           {features.map((f, i) => {
             const col = i % 3;
             const row = Math.floor(i / 3);
@@ -1179,71 +1248,89 @@ export default function TryAryaPage() {
       <main>
 
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section style={{ background: "#ffffff", minHeight: "100vh", paddingTop: 69, borderBottom: "1px solid #e5e5e5" }}>
-          <div style={{ paddingLeft: 24, paddingRight: 24, paddingTop: 80 }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, maxWidth: 1400, margin: "0 auto", alignItems: "center", minHeight: "calc(100vh - 149px)" }}>
+        <section style={{ background: "#ffffff", minHeight: "100vh", paddingTop: 69, borderBottom: "1px solid #e5e5e5", overflow: "hidden" }}>
+          <div className="ta-hero-padding" style={{ paddingLeft: 0, paddingRight: 0, paddingTop: 0, height: "calc(100vh - 69px)", display: "flex", flexDirection: "column" }}>
+            {/* Main grid */}
+            <div className="ta-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", flex: 1, minHeight: 0 }}>
 
               {/* Left — headline + subtitle + CTAs */}
-              <div>
+              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "60px 64px" }}>
                 {/* Arya · Online badge */}
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "8px 16px", borderRadius: 2, background: "rgba(22,163,74,0.06)", border: "1px solid rgba(22,163,74,0.2)", marginBottom: 32 }}>
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#16a34a", boxShadow: "0 0 0 3px rgba(22,163,74,0.2)", flexShrink: 0 }} />
-                  <span style={{ fontSize: 13, fontWeight: 500, color: "#16a34a", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                    Arya · Online
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "7px 14px", borderRadius: 40, background: "rgba(22,163,74,0.06)", border: "1px solid rgba(22,163,74,0.2)", marginBottom: 32, width: "fit-content" }}>
+                  <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#16a34a", boxShadow: "0 0 0 3px rgba(22,163,74,0.2)", flexShrink: 0 }} />
+                  <span style={{ fontSize: 12, fontWeight: 500, color: "#16a34a", fontFamily: "Plusjakartasans, Arial, sans-serif", letterSpacing: "0.02em" }}>
+                    Arya the Sales Worker
                   </span>
                 </div>
 
                 {/* H1 */}
-                <h1 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4.5vw, 64px)", fontWeight: 300, color: "#000000", lineHeight: 1.08, margin: "0 0 24px" }}>
-                  The World&apos;s First{" "}
-                  <span style={{ color: "#D95938" }}>Super Human</span>{" "}
-                  AI Sales Worker.
+                <h1 className="ta-h1" style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(40px, 4.5vw, 68px)", fontWeight: 300, color: "#000000", lineHeight: 1.05, margin: "0 0 8px" }}>
+                  Hi, I&apos;m Arya.
                 </h1>
+                <div style={{ width: 56, height: 2, background: "#D95938", marginBottom: 24 }} />
 
-                <p style={{ fontSize: 17, fontWeight: 400, color: "#555555", lineHeight: 1.7, marginBottom: 40, maxWidth: 520, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                  One digital worker across Calls, WhatsApp &amp; Email — with shared memory, shared context, and one relentless goal: run your revenue.
+                <p style={{ fontSize: 16, fontWeight: 400, color: "#555555", lineHeight: 1.75, marginBottom: 40, maxWidth: 460, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                  I&apos;m the world&apos;s first <strong style={{ color: "#000", fontWeight: 500 }}>Super Human AI Sales Worker</strong> — calling, qualifying, and closing leads across Voice, WhatsApp &amp; Email. 24/7, on autopilot.
                 </p>
 
                 {/* CTA buttons */}
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                   <a href="#talk-to-arya"
-                    style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", fontSize: 15, fontWeight: 400, textTransform: "uppercase", borderRadius: 2, background: "#D95938", color: "#F8F7F7", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5 19.79 19.79 0 01.06 2.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2z" /></svg>
-                    Let Arya Call You
+                    style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", fontSize: 15, fontWeight: 400, textTransform: "uppercase", borderRadius: 40, background: "#D95938", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                    Hire Arya
                   </a>
-                  <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer"
-                    style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", fontSize: 15, fontWeight: 400, textTransform: "uppercase", borderRadius: 2, background: "rgba(37,211,102,0.08)", color: "#16a34a", border: "1px solid rgba(37,211,102,0.25)", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /></svg>
-                    WhatsApp Arya
+                  <a href="tel:+919873322457"
+                    style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", fontSize: 15, fontWeight: 400, textTransform: "uppercase", borderRadius: 40, background: "transparent", color: "#000000", border: "1px solid #d0d0d0", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                    Call Me
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                   </a>
                 </div>
               </div>
 
-              {/* Right — Arya video with online badge */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <div style={{ position: "relative", width: "100%", maxWidth: 560 }}>
-                  {/* Video */}
-                  <div style={{ position: "relative", width: "100%", aspectRatio: "4/3", overflow: "hidden", borderRadius: 2, border: "1px solid #e5e5e5" }}>
-                    <video autoPlay muted loop playsInline style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}>
-                      <source src={ARYA_VIDEO} type="video/mp4" />
-                    </video>
-                    {/* Gradient overlay */}
-                    <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "50%", background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)" }} />
-                    {/* Arya · Online badge over video */}
-                    <div style={{ position: "absolute", bottom: 20, left: 20, display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 16px", borderRadius: 2, background: "rgba(0,0,0,0.55)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.15)" }}>
-                      <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#16a34a", boxShadow: "0 0 0 3px rgba(22,163,74,0.3)", flexShrink: 0 }} />
-                      <span style={{ fontSize: 13, fontWeight: 500, color: "#ffffff", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                        Arya · Online
-                      </span>
-                    </div>
+              {/* Right — full-height video card */}
+              <div className="ta-hero-video" style={{ position: "relative", overflow: "hidden" }}>
+                {/* Video fills full height */}
+                <video autoPlay muted loop playsInline
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}>
+                  <source src={ARYA_VIDEO} type="video/mp4" />
+                </video>
+
+                {/* Subtle dark gradient at bottom */}
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 30%, transparent 55%, rgba(0,0,0,0.75) 100%)" }} />
+
+                {/* Top badges */}
+                <div style={{ position: "absolute", top: 20, left: 20, display: "flex", gap: 10, alignItems: "center" }}>
+                  <div style={{ padding: "7px 14px", borderRadius: 40, background: "rgba(255,255,255,0.15)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)" }}>
+                    <span style={{ fontSize: 13, fontWeight: 500, color: "#ffffff", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya the Sales Worker</span>
+                  </div>
+                  <div style={{ padding: "7px 14px", borderRadius: 40, background: "rgba(255,255,255,0.12)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)", display: "flex", alignItems: "center", gap: 6 }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#facc15"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    <span style={{ fontSize: 13, fontWeight: 500, color: "#ffffff", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Active</span>
+                  </div>
+                </div>
+
+                {/* Bottom — incoming call UI */}
+                <div style={{ position: "absolute", bottom: 24, left: 20, right: 20, background: "rgba(20,20,20,0.72)", backdropFilter: "blur(16px)", borderRadius: 16, padding: "14px 18px", display: "flex", alignItems: "center", gap: 14 }}>
+                  <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#D95938", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <span style={{ fontSize: 15, fontWeight: 600, color: "#fff", fontFamily: "Bdogrotesk, Arial, sans-serif" }}>A</span>
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <p style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Incoming</p>
+                    <p style={{ fontSize: 14, fontWeight: 500, color: "#ffffff", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya the Sales Worker</p>
+                  </div>
+                  {/* Decline */}
+                  <div style={{ width: 38, height: 38, borderRadius: "50%", background: "#ef4444", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                  </div>
+                  {/* Accept */}
+                  <div style={{ width: 38, height: 38, borderRadius: "50%", background: "#16a34a", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Logo marquee */}
-          <div style={{ marginTop: 64 }}>
+            {/* Logo marquee — pinned at bottom */}
             <LogoMarquee />
           </div>
         </section>
@@ -1265,6 +1352,9 @@ export default function TryAryaPage() {
 
         {/* ── Talk to Arya ─────────────────────────────────── */}
         <TalkToAryaSection />
+
+        {/* ── Launch Video ─────────────────────────────────── */}
+        <LaunchVideoSection />
 
         {/* ── Features ─────────────────────────────────────── */}
         <FeaturesSection />
