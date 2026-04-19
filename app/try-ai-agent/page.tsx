@@ -1244,94 +1244,105 @@ export default function TryAryaPage() {
         input:focus, select:focus { border-color: #D95938 !important; box-shadow: 0 0 0 2px rgba(217,89,56,0.12); }
       `}</style>
 
-      <Navbar variant="light" />
+      <Navbar />
       <main>
 
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section style={{ background: "#ffffff", minHeight: "100vh", paddingTop: 69, borderBottom: "1px solid #e5e5e5", overflow: "hidden" }}>
-          <div className="ta-hero-padding" style={{ paddingLeft: 0, paddingRight: 0, paddingTop: 0, height: "calc(100vh - 69px)", display: "flex", flexDirection: "column" }}>
-            {/* Main grid */}
-            <div className="ta-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", flex: 1, minHeight: 0 }}>
+        <section style={{ background: "#0b1d1a", minHeight: "100vh", paddingTop: 69, overflow: "hidden", position: "relative" }}>
+          {/* subtle noise/grain texture overlay */}
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(ellipse 80% 60% at 60% 50%, rgba(217,89,56,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-              {/* Left — headline + subtitle + CTAs */}
-              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "60px 64px" }}>
-                {/* Arya · Online badge */}
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "7px 14px", borderRadius: 40, background: "rgba(22,163,74,0.06)", border: "1px solid rgba(22,163,74,0.2)", marginBottom: 32, width: "fit-content" }}>
-                  <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#16a34a", boxShadow: "0 0 0 3px rgba(22,163,74,0.2)", flexShrink: 0 }} />
-                  <span style={{ fontSize: 12, fontWeight: 500, color: "#16a34a", fontFamily: "Plusjakartasans, Arial, sans-serif", letterSpacing: "0.02em" }}>
-                    Arya the Sales Worker
-                  </span>
+          <div style={{ position: "relative", height: "calc(100vh - 69px)", display: "flex", flexDirection: "column" }}>
+
+            {/* Main 2-col grid */}
+            <div className="ta-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", flex: 1, minHeight: 0, alignItems: "stretch" }}>
+
+              {/* ── Left ── */}
+              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "64px 56px 64px 64px" }}>
+
+                {/* Pill badge — "Arya · Active" */}
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 40, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.14)", marginBottom: 36, width: "fit-content" }}>
+                  <span style={{ fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.85)", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya · AI Sales Worker</span>
                 </div>
 
-                {/* H1 */}
-                <h1 className="ta-h1" style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(40px, 4.5vw, 68px)", fontWeight: 300, color: "#000000", lineHeight: 1.05, margin: "0 0 8px" }}>
-                  Hi, I&apos;m Arya.
+                {/* H1 — large, impactful */}
+                <h1 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4.8vw, 72px)", fontWeight: 400, color: "#ffffff", lineHeight: 1.04, margin: "0 0 28px", letterSpacing: "-0.01em" }}>
+                  The world&apos;s first<br />
+                  <span style={{ color: "#D95938" }}>Super Human</span><br />
+                  AI Sales Worker.
                 </h1>
-                <div style={{ width: 56, height: 2, background: "#D95938", marginBottom: 24 }} />
 
-                <p style={{ fontSize: 16, fontWeight: 400, color: "#555555", lineHeight: 1.75, marginBottom: 40, maxWidth: 460, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                  I&apos;m the world&apos;s first <strong style={{ color: "#000", fontWeight: 500 }}>Super Human AI Sales Worker</strong> — calling, qualifying, and closing leads across Voice, WhatsApp &amp; Email. 24/7, on autopilot.
+                {/* Description */}
+                <p style={{ fontSize: 16, color: "rgba(255,255,255,0.6)", lineHeight: 1.75, marginBottom: 12, maxWidth: 500, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                  Calls, qualifies, and closes leads across Voice, WhatsApp &amp; Email — with shared memory, real-time objection handling, and one relentless goal: run your revenue.
+                </p>
+                <p style={{ fontSize: 15, color: "rgba(255,255,255,0.4)", lineHeight: 1.6, marginBottom: 40, maxWidth: 480, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                  Enterprise-grade AI that works 24/7, on autopilot.
                 </p>
 
-                {/* CTA buttons */}
-                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                {/* Divider */}
+                <div style={{ width: "100%", maxWidth: 480, height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 36 }} />
+
+                {/* CTA */}
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
                   <a href="#talk-to-arya"
-                    style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", fontSize: 15, fontWeight: 400, textTransform: "uppercase", borderRadius: 40, background: "#D95938", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                    Hire Arya
+                    style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 28px", fontSize: 15, fontWeight: 400, borderRadius: 40, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif", backdropFilter: "blur(8px)" }}>
+                    See how Arya works for your team
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                   </a>
                   <a href="tel:+919873322457"
-                    style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", fontSize: 15, fontWeight: 400, textTransform: "uppercase", borderRadius: 40, background: "transparent", color: "#000000", border: "1px solid #d0d0d0", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                    style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 24px", fontSize: 15, fontWeight: 400, borderRadius: 40, background: "#D95938", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                     Call Me
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                   </a>
                 </div>
               </div>
 
-              {/* Right — full-height video card */}
-              <div className="ta-hero-video" style={{ position: "relative", overflow: "hidden" }}>
-                {/* Video fills full height */}
-                <video autoPlay muted loop playsInline
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}>
-                  <source src={ARYA_VIDEO} type="video/mp4" />
-                </video>
+              {/* ── Right — floating rounded card ── */}
+              <div className="ta-hero-video" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 48px 40px 16px" }}>
+                <div style={{ position: "relative", width: "100%", maxWidth: 420, height: "calc(100% - 0px)", minHeight: 480, borderRadius: 20, overflow: "hidden", boxShadow: "0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08)" }}>
 
-                {/* Subtle dark gradient at bottom */}
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 30%, transparent 55%, rgba(0,0,0,0.75) 100%)" }} />
+                  {/* Video */}
+                  <video autoPlay muted loop playsInline
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}>
+                    <source src={ARYA_VIDEO} type="video/mp4" />
+                  </video>
 
-                {/* Top badges */}
-                <div style={{ position: "absolute", top: 20, left: 20, display: "flex", gap: 10, alignItems: "center" }}>
-                  <div style={{ padding: "7px 14px", borderRadius: 40, background: "rgba(255,255,255,0.15)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                    <span style={{ fontSize: 13, fontWeight: 500, color: "#ffffff", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya the Sales Worker</span>
-                  </div>
-                  <div style={{ padding: "7px 14px", borderRadius: 40, background: "rgba(255,255,255,0.12)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.2)", display: "flex", alignItems: "center", gap: 6 }}>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#facc15"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    <span style={{ fontSize: 13, fontWeight: 500, color: "#ffffff", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Active</span>
-                  </div>
-                </div>
+                  {/* gradient overlay — stronger at bottom */}
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 35%, transparent 50%, rgba(0,0,0,0.8) 100%)" }} />
 
-                {/* Bottom — incoming call UI */}
-                <div style={{ position: "absolute", bottom: 24, left: 20, right: 20, background: "rgba(20,20,20,0.72)", backdropFilter: "blur(16px)", borderRadius: 16, padding: "14px 18px", display: "flex", alignItems: "center", gap: 14 }}>
-                  <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#D95938", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <span style={{ fontSize: 15, fontWeight: 600, color: "#fff", fontFamily: "Bdogrotesk, Arial, sans-serif" }}>A</span>
+                  {/* Top badges */}
+                  <div style={{ position: "absolute", top: 16, left: 16, display: "flex", flexDirection: "column", gap: 8 }}>
+                    <div style={{ display: "inline-flex", alignItems: "center", padding: "6px 14px", borderRadius: 40, background: "rgba(0,0,0,0.45)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.15)", width: "fit-content" }}>
+                      <span style={{ fontSize: 13, fontWeight: 500, color: "#ffffff", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya the Sales Worker</span>
+                    </div>
+                    <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 12px", borderRadius: 40, background: "rgba(0,0,0,0.4)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.12)", width: "fit-content" }}>
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="#facc15"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                      <span style={{ fontSize: 12, fontWeight: 500, color: "rgba(255,255,255,0.9)", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Autopilot activated</span>
+                    </div>
                   </div>
-                  <div style={{ flex: 1 }}>
-                    <p style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Incoming</p>
-                    <p style={{ fontSize: 14, fontWeight: 500, color: "#ffffff", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya the Sales Worker</p>
-                  </div>
-                  {/* Decline */}
-                  <div style={{ width: 38, height: 38, borderRadius: "50%", background: "#ef4444", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                  </div>
-                  {/* Accept */}
-                  <div style={{ width: 38, height: 38, borderRadius: "50%", background: "#16a34a", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+
+                  {/* Bottom — message notification (like 11x) */}
+                  <div style={{ position: "absolute", bottom: 16, left: 16, right: 16, background: "rgba(10,10,10,0.75)", backdropFilter: "blur(20px)", borderRadius: 14, padding: "12px 14px", display: "flex", alignItems: "center", gap: 12, border: "1px solid rgba(255,255,255,0.1)" }}>
+                    {/* Avatar */}
+                    <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #D95938, #e8845e)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <span style={{ fontSize: 14, fontWeight: 600, color: "#fff", fontFamily: "Bdogrotesk, Arial, sans-serif" }}>A</span>
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <p style={{ fontSize: 12, fontWeight: 600, color: "#ffffff", margin: "0 0 2px", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya the Sales Worker</p>
+                      <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        Hi Rahul, are you still looking to scale your outbound?
+                      </p>
+                    </div>
+                    {/* Green dot */}
+                    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#16a34a", flexShrink: 0, boxShadow: "0 0 0 3px rgba(22,163,74,0.2)" }} />
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Logo marquee — pinned at bottom */}
-            <LogoMarquee />
+            {/* Logo marquee — dark, pinned at bottom */}
+            <LogoMarquee dark />
           </div>
         </section>
 
