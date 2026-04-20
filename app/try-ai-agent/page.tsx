@@ -520,7 +520,8 @@ function LiveActivitySection() {
             </div>
             <div>
               <p style={{ fontSize: 16, fontWeight: 600, color: "#ffffff", margin: "0 0 4px", fontFamily: "Bdogrotesk, Arial, sans-serif" }}>{maskName(scenario.caller)}</p>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.65)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{scenario.industry}</p>
+              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.75)", margin: "0 0 4px", fontFamily: "Plusjakartasans, Arial, sans-serif", letterSpacing: "0.04em" }}>{maskPhone(scenario.phone)}</p>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{scenario.industry}</p>
             </div>
             <div style={{ background: "rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 0, padding: "12px 16px" }}>
               <p style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Duration</p>
