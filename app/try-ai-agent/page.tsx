@@ -1289,13 +1289,13 @@ export default function TryAryaPage() {
 
                 {/* CTA */}
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-                  <a href="#talk-to-arya"
-                    style={{ display: "inline-flex", alignItems: "center", padding: "14px 28px", fontSize: 15, fontWeight: 400, borderRadius: 0, background: "transparent", border: "1px solid rgba(0,0,0,0.2)", color: "#111111", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                    See how Arya works for your team
-                  </a>
                   <a href="tel:+919873322457"
                     style={{ display: "inline-flex", alignItems: "center", padding: "14px 24px", fontSize: 15, fontWeight: 400, borderRadius: 0, background: "#D95938", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                     Call Me
+                  </a>
+                  <a href="#talk-to-arya"
+                    style={{ display: "inline-flex", alignItems: "center", padding: "14px 28px", fontSize: 15, fontWeight: 400, borderRadius: 0, background: "transparent", border: "1px solid rgba(0,0,0,0.2)", color: "#111111", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                    See how Arya works for your team
                   </a>
                 </div>
               </div>
