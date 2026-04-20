@@ -939,89 +939,95 @@ function TalkToAryaSection() {
     <section id="talk-to-arya" ref={ref} style={{ background: "#D95938", padding: "100px 0" }}>
       <div className="container-site">
 
-        {/* ── Heading — white on primary orange ── */}
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
-            className="ta-h2"
-            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4.8vw, 64px)", fontWeight: 300, color: "#ffffff", margin: "0 0 20px", lineHeight: 1.05 }}
-          >
-            Experience the future of sales.<br />Choose your channel.
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.08 }}
-            style={{ fontSize: 16, color: "rgba(255,255,255,0.75)", margin: "0 auto", maxWidth: 460, lineHeight: 1.65, fontFamily: "Plusjakartasans, Arial, sans-serif" }}
-          >
-            This isn&apos;t a demo form. Arya is live. Talk to her right now.
-          </motion.p>
-        </div>
+        {/* ── Left | Right grid ── */}
+        <div className="ta-talk-grid" style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 2, alignItems: "stretch" }}>
 
-        {/* ── 3 channel cards — equal weight, horizontal row ── */}
-        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 2, marginBottom: 2 }}>
-          {talkChannels.map((ch, i) => {
-            const iconBg = i === 1 ? "rgba(37,211,102,0.1)" : "rgba(217,89,56,0.06)";
-            const ctaColor = i === 1 ? "#25d366" : "#D95938";
-            return (
-              <motion.a
-                key={ch.title}
-                href={ch.ctaHref}
-                target={ch.ctaHref.startsWith("http") ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.15 + i * 0.1 }}
-                whileHover={{ background: "#f7f7f7" }}
-                style={{ background: "#ffffff", padding: "40px 32px", textDecoration: "none", display: "flex", flexDirection: "column", gap: 0 }}
+          {/* ── LEFT — heading + stacked channel cards ── */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+
+            {/* Heading block */}
+            <div style={{ padding: "56px 48px 48px" }}>
+              <motion.h2
+                initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
+                className="ta-h2"
+                style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(28px, 4vw, 56px)", fontWeight: 300, color: "#ffffff", margin: "0 0 20px", lineHeight: 1.05 }}
               >
-                {/* Icon */}
-                <div style={{ width: 52, height: 52, background: iconBg, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 24 }}>
-                  {ch.icon}
-                </div>
-                {/* Title */}
-                <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 22, fontWeight: 400, color: "#000000", margin: "0 0 10px", textTransform: "uppercase", letterSpacing: "0.02em", lineHeight: 1.1 }}>
-                  {ch.title}
-                </h4>
-                {/* Desc */}
-                <p style={{ fontSize: 14, color: "#666666", lineHeight: 1.65, margin: "0 0 28px", fontFamily: "Plusjakartasans, Arial, sans-serif", flex: 1 }}>
-                  {ch.desc}
-                </p>
-                {/* CTA link */}
-                <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, color: ctaColor, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Plusjakartasans, Arial, sans-serif", marginTop: "auto" }}>
-                  {ch.cta}
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </div>
-              </motion.a>
-            );
-          })}
-        </div>
+                Experience the future<br />of sales. Choose your<br />channel.
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.08 }}
+                style={{ fontSize: 15, color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.7, fontFamily: "Plusjakartasans, Arial, sans-serif", maxWidth: 380 }}
+              >
+                This isn&apos;t a demo form. Arya is live. Talk to her right now.
+              </motion.p>
+            </div>
 
-        {/* ── Form — white card centered below ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.65, delay: 0.45 }}
-          style={{ maxWidth: 640, margin: "48px auto 0", background: "#ffffff" }}
-        >
-          {/* Dark top bar — anchors the card on orange bg */}
-          <div style={{ height: 3, background: "#111111" }} />
-          <div style={{ padding: "44px 48px 40px" }}>
-            <h3 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 28, fontWeight: 400, color: "#000000", margin: "0 0 8px" }}>
-              Let Arya call you.
-            </h3>
-            <p style={{ fontSize: 14, color: "#666666", marginBottom: 28, lineHeight: 1.6, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-              Share your details — she&apos;ll ring in under 60 seconds.
-            </p>
-            <TalkToAryaContactForm />
+            {/* Stacked channel cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 2, flex: 1 }}>
+              {talkChannels.map((ch, i) => {
+                const iconBg = i === 1 ? "rgba(37,211,102,0.1)" : "rgba(217,89,56,0.06)";
+                const ctaColor = i === 1 ? "#25d366" : "#D95938";
+                return (
+                  <motion.a
+                    key={ch.title}
+                    href={ch.ctaHref}
+                    target={ch.ctaHref.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                    whileHover={{ background: "#f7f7f7" }}
+                    style={{ background: "#ffffff", padding: "28px 32px", textDecoration: "none", display: "flex", alignItems: "center", gap: 20, flex: 1 }}
+                  >
+                    {/* Icon */}
+                    <div style={{ width: 48, height: 48, flexShrink: 0, background: iconBg, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      {ch.icon}
+                    </div>
+                    {/* Text */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 18, fontWeight: 400, color: "#000000", margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.02em", lineHeight: 1.2 }}>
+                        {ch.title}
+                      </h4>
+                      <p style={{ fontSize: 13, color: "#666666", lineHeight: 1.55, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                        {ch.desc}
+                      </p>
+                    </div>
+                    {/* Arrow */}
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 600, color: ctaColor, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Plusjakartasans, Arial, sans-serif", flexShrink: 0 }}>
+                      {ch.cta}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </div>
+                  </motion.a>
+                );
+              })}
+            </div>
+
           </div>
-        </motion.div>
 
-        {/* Trust line */}
-        <motion.p
-          initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.6, delay: 0.7 }}
-          style={{ textAlign: "center", fontSize: 13, color: "rgba(255,255,255,0.55)", fontFamily: "Plusjakartasans, Arial, sans-serif", margin: "28px 0 0", lineHeight: 1.6 }}
-        >
-          No human SDR involved · No spam · Arya responds in under 60 seconds
-        </motion.p>
+          {/* ── RIGHT — form card ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 32 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.65, delay: 0.3 }}
+            style={{ background: "#ffffff", display: "flex", flexDirection: "column" }}
+          >
+            <div style={{ height: 3, background: "#111111" }} />
+            <div style={{ padding: "48px 44px 44px", flex: 1 }}>
+              <h3 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 28, fontWeight: 400, color: "#000000", margin: "0 0 8px" }}>
+                Let Arya call you.
+              </h3>
+              <p style={{ fontSize: 14, color: "#666666", marginBottom: 32, lineHeight: 1.6, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                Share your details — she&apos;ll ring in under 60 seconds.
+              </p>
+              <TalkToAryaContactForm />
+            </div>
+            <div style={{ padding: "0 44px 28px" }}>
+              <p style={{ fontSize: 12, color: "#aaaaaa", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif", lineHeight: 1.6 }}>
+                No human SDR involved · No spam · Arya responds in under 60 seconds
+              </p>
+            </div>
+          </motion.div>
 
+        </div>
       </div>
     </section>
   );
