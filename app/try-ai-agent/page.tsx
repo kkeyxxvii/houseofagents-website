@@ -1272,11 +1272,6 @@ export default function TryAryaPage() {
               {/* ── Left ── */}
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "64px 56px 64px 64px" }}>
 
-                {/* Pill badge */}
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 0, background: "rgba(217,89,56,0.06)", border: "1px solid rgba(217,89,56,0.2)", marginBottom: 36, width: "fit-content" }}>
-                  <span style={{ fontSize: 13, fontWeight: 400, color: "#D95938", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya · AI Sales Worker</span>
-                </div>
-
                 {/* H1 */}
                 <h1 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4.8vw, 72px)", fontWeight: 400, color: "#000000", lineHeight: 1.04, margin: "0 0 28px", letterSpacing: "-0.01em" }}>
                   The world&apos;s first<br />
