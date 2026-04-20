@@ -2,144 +2,120 @@ import Link from "next/link";
 
 const footerLinks = {
   Company: [
-    { label: "About us", href: "/about" },
-    { label: "GET IN TOUCH", href: "/contact-us" },
+    { label: "About Us", href: "/about" },
+    { label: "Get In Touch", href: "/contact-us" },
   ],
   Resources: [
     { label: "Blogs", href: "/blogs" },
-    { label: "Case studies", href: "/customer-stories" },
-    { label: "Linkedin", href: "https://www.linkedin.com/company/houseofagents-ai/", external: true },
+    { label: "Case Studies", href: "/customer-stories" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/houseofagents-ai/", external: true },
   ],
-};
-
-const BTN_STYLE: React.CSSProperties = {
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: "16px 32px",
-  fontSize: 16,
-  fontWeight: 400,
-  textTransform: "uppercase",
-  letterSpacing: "normal",
-  borderRadius: 2,
-  background: "#F8F7F7",
-  color: "#000000",
-  textDecoration: "none",
-  border: "none",
 };
 
 export default function Footer() {
   return (
     <footer style={{ background: "#D95938" }}>
-      {/* padding-global: paddingLeft 24px */}
-      <div style={{ paddingLeft: 24, paddingRight: 24 }}>
-        {/* footer-wrapper: grid 700px 350px 350px, maxWidth 1400px, margin auto */}
+      <div className="container-site" style={{ paddingTop: 40, paddingBottom: 0 }}>
+
+        {/* ── Inner bordered grid ── */}
         <div
           style={{
+            border: "1px solid rgba(255,255,255,0.35)",
             display: "grid",
-            gridTemplateColumns: "700px 350px 350px",
-            maxWidth: 1400,
-            margin: "0 auto",
-            paddingTop: 56,
-            paddingBottom: 56,
+            gridTemplateColumns: "1.5fr 1fr 1fr",
           }}
         >
-          {/* Brand column (700px) */}
-          <div>
+          {/* ── Brand column ── */}
+          <div style={{ padding: "52px 48px 52px 48px", borderRight: "1px solid rgba(255,255,255,0.35)" }}>
+
             {/* Logo */}
             <Link
               href="/"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                marginBottom: 24,
-                textDecoration: "none",
-              }}
+              style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28, textDecoration: "none" }}
             >
-              {/* Snowflake icon — same as nav/hero */}
               <svg
-                width="22"
-                height="22"
-                viewBox="0 0 44 44"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                width="30" height="30" viewBox="0 0 44 44"
+                fill="none" xmlns="http://www.w3.org/2000/svg"
                 style={{ color: "#F8F7F7", flexShrink: 0 }}
               >
                 <path
                   d="M22 0V22L33 2.94744L22 22L41.0526 11L22 22H44H22L41.0526 33L22 22L33 41.0526L22 22V44V22L11 41.0526L22 22L2.94744 33L22 22H0H22L2.94744 11L22 22L11 2.94744L22 22V0Z"
-                  stroke="currentColor"
-                  strokeWidth="4"
+                  stroke="currentColor" strokeWidth="4"
                 />
               </svg>
-              <span
-                style={{
-                  fontFamily: "Bdogrotesk, Arial, sans-serif",
-                  fontWeight: 400,
-                  fontSize: 14,
-                  color: "#F8F7F7",
-                }}
-              >
+              <span style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontWeight: 400, fontSize: 28, color: "#F8F7F7", whiteSpace: "nowrap" }}>
                 House of Agents
               </span>
             </Link>
 
-            <p
-              style={{
-                fontSize: 14,
-                fontWeight: 400,
-                color: "#F8F7F7",
-                lineHeight: 1.6,
-                marginBottom: 32,
-                maxWidth: 400,
-              }}
-            >
+            {/* Tagline */}
+            <p style={{ fontSize: 15, fontWeight: 400, color: "rgba(255,255,255,0.85)", lineHeight: 1.75, marginBottom: 40, maxWidth: 380, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
               10x your productivity with House of Agents. Save countless hours in manual tasks with our multi-agents today.
             </p>
 
-            {/* CTAs — both white bg, black text */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-              <Link href="/try-ai-agent" style={BTN_STYLE}>
+            {/* CTAs */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 14 }}>
+              {/* Solid white — primary */}
+              <Link
+                href="/try-ai-agent"
+                style={{
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  padding: "14px 32px", fontSize: 14, fontWeight: 600,
+                  textTransform: "uppercase", letterSpacing: "0.06em",
+                  background: "#ffffff", color: "#000000",
+                  textDecoration: "none", border: "none",
+                  fontFamily: "Plusjakartasans, Arial, sans-serif",
+                }}
+              >
                 Try Arya
               </Link>
+              {/* Outlined — secondary */}
               <Link
                 href="https://calendly.com/hello-houseofagents-8n-x/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={BTN_STYLE}
+                target="_blank" rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  padding: "14px 32px", fontSize: 14, fontWeight: 600,
+                  textTransform: "uppercase", letterSpacing: "0.06em",
+                  background: "transparent", color: "#ffffff",
+                  textDecoration: "none", border: "1px solid rgba(255,255,255,0.7)",
+                  fontFamily: "Plusjakartasans, Arial, sans-serif",
+                }}
               >
                 Book Demo
               </Link>
             </div>
           </div>
 
-          {/* Link columns (350px each) */}
-          {Object.entries(footerLinks).map(([section, links]) => (
-            <div key={section} style={{ paddingLeft: 40 }}>
-              <h4
-                style={{
-                  fontSize: 25,
-                  fontWeight: 400,
-                  color: "#F8F7F7",
-                  textTransform: "none",
-                  letterSpacing: "normal",
-                  marginBottom: 20,
-                  marginTop: 0,
-                }}
-              >
+          {/* ── Link columns ── */}
+          {Object.entries(footerLinks).map(([section, links], colIdx) => (
+            <div
+              key={section}
+              style={{
+                padding: "52px 48px",
+                borderRight: colIdx === 0 ? "1px solid rgba(255,255,255,0.35)" : "none",
+              }}
+            >
+              <h4 style={{
+                fontFamily: "Bdogrotesk, Arial, sans-serif",
+                fontSize: 22, fontWeight: 400,
+                color: "#F8F7F7", margin: "0 0 32px",
+                letterSpacing: "normal",
+              }}>
                 {section}
               </h4>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 20 }}>
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
                       style={{
-                        fontSize: 14,
-                        fontWeight: 400,
-                        color: "#F8F7F7",
+                        fontSize: 12, fontWeight: 400,
+                        color: "rgba(255,255,255,0.85)",
                         textDecoration: "none",
                         textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        fontFamily: "Plusjakartasans, Arial, sans-serif",
                       }}
                       {...("external" in link && link.external
                         ? { target: "_blank", rel: "noopener noreferrer" }
@@ -154,39 +130,26 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom bar */}
-        <div
-          style={{
-            maxWidth: 1400,
-            margin: "0 auto",
-            paddingTop: 24,
-            paddingBottom: 32,
-            borderTop: "1px solid rgba(248,247,247,0.25)",
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 16,
-          }}
-        >
-          <p style={{ fontSize: 13.6, fontWeight: 400, color: "#F8F7F7", margin: 0 }}>
+        {/* ── Bottom bar ── */}
+        <div style={{
+          paddingTop: 20, paddingBottom: 24,
+          display: "flex", flexWrap: "wrap",
+          alignItems: "center", justifyContent: "space-between",
+          gap: 12,
+        }}>
+          <p style={{ fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.7)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
             ©2026 House of Agents. All Rights Reserved.
           </p>
-          <div style={{ display: "flex", gap: 24 }}>
-            <Link
-              href="/privacy-policy"
-              style={{ fontSize: 12, fontWeight: 400, color: "#F8F7F7", textDecoration: "none", textTransform: "uppercase" }}
-            >
+          <div style={{ display: "flex", gap: 28 }}>
+            <Link href="/privacy-policy" style={{ fontSize: 12, fontWeight: 400, color: "rgba(255,255,255,0.7)", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
               Privacy Policy
             </Link>
-            <Link
-              href="/terms-and-conditions"
-              style={{ fontSize: 12, fontWeight: 400, color: "#F8F7F7", textDecoration: "none", textTransform: "uppercase" }}
-            >
+            <Link href="/terms-and-conditions" style={{ fontSize: 12, fontWeight: 400, color: "rgba(255,255,255,0.7)", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
               Terms &amp; Conditions
             </Link>
           </div>
         </div>
+
       </div>
     </footer>
   );
