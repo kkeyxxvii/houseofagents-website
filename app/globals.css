@@ -255,5 +255,70 @@ h1 {
   .ta-section-padding { padding-top: 64px !important; padding-bottom: 64px !important; }
   .ta-h1 { font-size: clamp(32px, 8vw, 52px) !important; }
   .ta-h2 { font-size: clamp(28px, 7vw, 42px) !important; }
+  .ta-hero-left-pad { padding: 40px 24px !important; }
+  .ta-form-2col { grid-template-columns: 1fr !important; }
   .container-site { padding-inline: 16px !important; }
+}
+
+/* ─── Home page — responsive ────────────────────────────── */
+@media (max-width: 900px) {
+  /* Hero heading */
+  .home-hero-h1 {
+    font-size: clamp(36px, 9vw, 72px) !important;
+    line-height: 1.1 !important;
+  }
+  .home-hero-star {
+    width: 34px !important;
+    height: 30px !important;
+  }
+
+  /* Agents section */
+  .home-agent-section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  .home-agents-wrapper { padding-left: 0 !important; }
+  .home-agents-grid {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+    width: 100% !important;
+    column-gap: 0 !important;
+  }
+  .home-agents-video {
+    width: 100% !important;
+    height: 260px !important;
+    order: 1 !important;
+  }
+  .home-agents-content {
+    width: 100% !important;
+    order: 2 !important;
+    padding: 32px 24px !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Features grid — 4 col → 2 col */
+  .home-features-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .home-features-grid > *:nth-child(2n) { border-right: none !important; }
+  /* Add bottom border for rows 3 & 4 of the 2-col layout */
+  .home-features-grid > *:nth-child(n+5):nth-child(-n+6) {
+    border-bottom: 2px solid rgba(247,238,218,0.5) !important;
+  }
+
+  /* Pillars grid — 3 col → 1 col */
+  .home-pillars-grid { grid-template-columns: 1fr !important; }
+  .home-pillars-img { height: 200px !important; }
+
+  /* Footer */
+  .footer-inner-grid { grid-template-columns: 1fr !important; }
+  .footer-brand-col {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.35) !important;
+    padding: 40px 24px !important;
+  }
+  .footer-link-col {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.35) !important;
+    padding: 32px 24px !important;
+  }
+  .footer-link-col-last { border-bottom: none !important; }
 }

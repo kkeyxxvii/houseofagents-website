@@ -20,6 +20,7 @@ export default function Footer() {
 
         {/* ── Inner bordered grid ── */}
         <div
+          className="footer-inner-grid"
           style={{
             border: "1px solid rgba(255,255,255,0.35)",
             display: "grid",
@@ -27,7 +28,7 @@ export default function Footer() {
           }}
         >
           {/* ── Brand column ── */}
-          <div style={{ padding: "52px 48px 52px 48px", borderRight: "1px solid rgba(255,255,255,0.35)" }}>
+          <div className="footer-brand-col" style={{ padding: "52px 48px 52px 48px", borderRight: "1px solid rgba(255,255,255,0.35)" }}>
 
             {/* Logo */}
             <Link
@@ -77,9 +78,10 @@ export default function Footer() {
           </div>
 
           {/* ── Link columns ── */}
-          {Object.entries(footerLinks).map(([section, links], colIdx) => (
+          {Object.entries(footerLinks).map(([section, links], colIdx, arr) => (
             <div
               key={section}
+              className={`footer-link-col${colIdx === arr.length - 1 ? " footer-link-col-last" : ""}`}
               style={{
                 padding: "52px 48px",
                 borderRight: colIdx === 0 ? "1px solid rgba(255,255,255,0.35)" : "none",

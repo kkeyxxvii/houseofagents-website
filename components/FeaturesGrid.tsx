@@ -95,6 +95,7 @@ export default function FeaturesGrid() {
 
           {/* 4×2 feature card table */}
           <div
+            className="home-features-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
@@ -167,6 +168,7 @@ export default function FeaturesGrid() {
 
           {/* 3-column pillar cards */}
           <div
+            className="home-pillars-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
@@ -213,6 +215,7 @@ export default function FeaturesGrid() {
                 </p>
                 {/* Image — at bottom */}
                 <div
+                  className="home-pillars-img"
                   style={{
                     height: 400,
                     background: "rgb(245,226,196)",

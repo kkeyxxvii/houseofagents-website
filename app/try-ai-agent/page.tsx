@@ -391,7 +391,7 @@ function StatsBar() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
   return (
-    <section ref={ref} style={{ background: "#0a0a0a", padding: "80px 24px" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#0a0a0a", padding: "80px 24px" }}>
       <div className="container-site">
         {/* Heading */}
         <div style={{ marginBottom: 56 }}>
@@ -484,7 +484,7 @@ function LiveActivitySection() {
   const secs = (callSecs % 60).toString().padStart(2, "0");
 
   return (
-    <section ref={ref} style={{ background: "#ffffff", padding: "100px 24px" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#ffffff", padding: "100px 24px" }}>
       <div className="container-site">
         {/* Heading */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
@@ -585,7 +585,7 @@ function TheProblemSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section ref={ref} style={{ background: "#f8f7f7", padding: "100px 24px" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#f8f7f7", padding: "100px 24px" }}>
       <div className="container-site">
         {/* Heading */}
         <div style={{ textAlign: "center", marginBottom: 64 }}>
@@ -629,7 +629,7 @@ function OmniChannelSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section ref={ref} style={{ background: "#ffffff", padding: "100px 24px" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#ffffff", padding: "100px 24px" }}>
       <div className="container-site">
         {/* Heading */}
         <div style={{ textAlign: "center", marginBottom: 64 }}>
@@ -860,7 +860,7 @@ function TalkToAryaContactForm() {
   return (
     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
       {/* Name + Company row */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+      <div className="ta-form-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
         <div>
           <label style={lbl}>Full Name</label>
           <input type="text" required placeholder="Your name" value={form.name}
@@ -923,7 +923,7 @@ function TalkToAryaSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section id="talk-to-arya" ref={ref} style={{ background: "#D95938", padding: "100px 0" }}>
+    <section id="talk-to-arya" ref={ref} className="ta-section-padding" style={{ background: "#D95938", padding: "100px 0" }}>
       <div className="container-site">
 
         {/* ── Left | Right grid ── */}
@@ -1053,7 +1053,7 @@ function FeaturesSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section ref={ref} style={{ background: "#ffffff", padding: "100px 24px" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#ffffff", padding: "100px 24px" }}>
       <div className="container-site">
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
@@ -1124,7 +1124,7 @@ function UseCasesSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const tab = videoCaseTabs.find((t) => t.id === active)!;
   return (
-    <section ref={ref} style={{ background: "#f8f7f7", padding: "100px 24px" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#f8f7f7", padding: "100px 24px" }}>
       <div className="container-site">
         <div style={{ marginBottom: 48 }}>
           <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
@@ -1145,7 +1145,7 @@ function UseCasesSection() {
         </div>
         <AnimatePresence mode="wait">
           <motion.div key={active} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.35 }}
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+            className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
             {tab.videos.map((v, i) => (
               <VideoCard key={v.title} video={v} index={i} inView={inView} />
             ))}
@@ -1164,7 +1164,7 @@ function TryAryaTestimonials() {
   const prev = () => setActiveMobile((a) => (a - 1 + testimonials.length) % testimonials.length);
   const next = () => setActiveMobile((a) => (a + 1) % testimonials.length);
   return (
-    <section ref={ref} style={{ background: "#ffffff", padding: "100px 24px" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#ffffff", padding: "100px 24px" }}>
       <div className="container-site">
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
@@ -1224,7 +1224,7 @@ function BottomCta() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section ref={ref} style={{ background: "#D95938", padding: "100px 24px", textAlign: "center" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#D95938", padding: "100px 24px", textAlign: "center" }}>
       <div className="container-site" style={{ maxWidth: 720 }}>
         <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
           style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4vw, 56px)", fontWeight: 300, color: "#F8F7F7", margin: "0 0 20px", lineHeight: 1.1 }}>
@@ -1270,7 +1270,7 @@ export default function TryAryaPage() {
             <div className="ta-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", flex: 1, minHeight: 0, alignItems: "stretch" }}>
 
               {/* ── Left ── */}
-              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "64px 56px 64px 64px" }}>
+              <div className="ta-hero-left-pad" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "64px 56px 64px 64px" }}>
 
                 {/* H1 */}
                 <h1 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4.8vw, 72px)", fontWeight: 400, color: "#000000", lineHeight: 1.04, margin: "0 0 28px", letterSpacing: "-0.01em" }}>

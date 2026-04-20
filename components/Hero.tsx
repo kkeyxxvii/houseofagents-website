@@ -45,10 +45,11 @@ export default function Hero() {
                 }}
               >
                 <h1
+                  className="home-hero-h1"
                   style={{
                     fontWeight: 300,
-                    fontSize: 72,
-                    lineHeight: "72px",
+                    fontSize: "clamp(36px, 7vw, 72px)",
+                    lineHeight: 1.1,
                     letterSpacing: "normal",
                     color: "#F8F7F7",
                     margin: 0,
@@ -58,6 +59,7 @@ export default function Hero() {
                 </h1>
                 {/* Star SVG — stroke-based snowflake, 48×44px */}
                 <div
+                  className="home-hero-star"
                   style={{
                     width: 48,
                     height: 44,
@@ -83,10 +85,11 @@ export default function Hero() {
 
               {/* Row 2: for Sales */}
               <h1
+                className="home-hero-h1"
                 style={{
                   fontWeight: 300,
-                  fontSize: 72,
-                  lineHeight: "72px",
+                  fontSize: "clamp(36px, 7vw, 72px)",
+                  lineHeight: 1.1,
                   letterSpacing: "normal",
                   color: "#F8F7F7",
                   margin: 0,

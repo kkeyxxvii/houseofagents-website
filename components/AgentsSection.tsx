@@ -60,15 +60,17 @@ export default function AgentsSection() {
       {agents.map((agent) => (
         <div
           key={agent.id}
+          className="home-agent-section"
           style={{
             paddingTop: agent.paddingTop,
             paddingBottom: agent.paddingBottom,
           }}
         >
           {/* padding-global: 24px left only, then container_large 1400px */}
-          <div style={{ paddingLeft: 24 }}>
+          <div className="home-agents-wrapper" style={{ paddingLeft: 24 }}>
             {/* grid: 660px 660px, col-gap 80px */}
             <div
+              className="home-agents-grid"
               style={{
                 display: "grid",
                 gridTemplateColumns: "660px 660px",
@@ -80,6 +82,7 @@ export default function AgentsSection() {
             >
               {/* Video column — left for Arya, right for Cora (via order) */}
               <div
+                className="home-agents-video"
                 style={{
                   position: "relative",
                   width: 660,
@@ -107,6 +110,7 @@ export default function AgentsSection() {
 
               {/* Content panel — right for Arya, left for Cora (via order) */}
               <div
+                className="home-agents-content"
                 style={{
                   display: "flex",
                   flexDirection: "column",

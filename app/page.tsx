@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 
 function CollabBanner() {
   return (
-    <section style={{ background: "#000000", padding: "128px 0" }}>
+    <section style={{ background: "#000000", padding: "clamp(64px, 10vw, 128px) 0" }}>
       <div className="container-site" style={{ textAlign: "center" }}>
         <h2
           style={{
