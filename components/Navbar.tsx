@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 interface NavbarProps {
   variant?: "dark" | "light";
@@ -50,41 +51,13 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 10,
             paddingLeft: 20,
             paddingRight: 24,
             flexShrink: 0,
             textDecoration: "none",
           }}
         >
-          {/* Snowflake star icon — same as hero star */}
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 44 44"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{ color: iconColor, flexShrink: 0 }}
-          >
-            <path
-              d="M22 0V22L33 2.94744L22 22L41.0526 11L22 22H44H22L41.0526 33L22 22L33 41.0526L22 22V44V22L11 41.0526L22 22L2.94744 33L22 22H0H22L2.94744 11L22 22L11 2.94744L22 22V0Z"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
-          </svg>
-          {/* Wordmark */}
-          <span
-            style={{
-              fontFamily: "Bdogrotesk, Arial, sans-serif",
-              fontSize: 14,
-              fontWeight: 400,
-              color: textColor,
-              whiteSpace: "nowrap",
-              letterSpacing: "0.01em",
-            }}
-          >
-            House of Agents
-          </span>
+          <Logo color={textColor} height={20} />
         </Link>
 
         {/* Spacer */}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 const footerLinks = {
   Company: [
@@ -31,21 +32,9 @@ export default function Footer() {
             {/* Logo */}
             <Link
               href="/"
-              style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 28, textDecoration: "none" }}
+              style={{ display: "flex", alignItems: "center", marginBottom: 28, textDecoration: "none" }}
             >
-              <svg
-                width="30" height="30" viewBox="0 0 44 44"
-                fill="none" xmlns="http://www.w3.org/2000/svg"
-                style={{ color: "#F8F7F7", flexShrink: 0 }}
-              >
-                <path
-                  d="M22 0V22L33 2.94744L22 22L41.0526 11L22 22H44H22L41.0526 33L22 22L33 41.0526L22 22V44V22L11 41.0526L22 22L2.94744 33L22 22H0H22L2.94744 11L22 22L11 2.94744L22 22V0Z"
-                  stroke="currentColor" strokeWidth="4"
-                />
-              </svg>
-              <span style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontWeight: 400, fontSize: 28, color: "#F8F7F7", whiteSpace: "nowrap" }}>
-                House of Agents
-              </span>
+              <Logo color="#F8F7F7" height={26} />
             </Link>
 
             {/* Tagline */}
