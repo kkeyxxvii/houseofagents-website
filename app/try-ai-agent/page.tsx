@@ -1009,11 +1009,6 @@ function TalkToAryaSection() {
               </p>
               <TalkToAryaContactForm />
             </div>
-            <div style={{ padding: "0 44px 28px" }}>
-              <p style={{ fontSize: 12, color: "#aaaaaa", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif", lineHeight: 1.6 }}>
-                No human SDR involved · No spam · Arya responds in under 60 seconds
-              </p>
-            </div>
           </motion.div>
 
         </div>
