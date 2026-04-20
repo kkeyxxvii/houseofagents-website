@@ -724,17 +724,19 @@ function HowAryaWorksSection() {
     <section ref={ref} className="ta-section-padding" style={{ background: "#f8f7f7", padding: "100px 24px" }}>
       <div className="container-site">
         {/* Heading */}
-        <div style={{ marginBottom: 64 }}>
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
           <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
+            className="ta-h2"
             style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 300, color: "#000000", margin: "0 0 4px", lineHeight: 1.08 }}>
             She doesn&apos;t just automate.
           </motion.h2>
           <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.06 }}
+            className="ta-h2"
             style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 300, color: "#000000", margin: "0 0 24px", lineHeight: 1.08 }}>
             She <span style={{ color: "#D95938" }}>owns the funnel.</span>
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.1 }}
-            style={{ fontSize: 16, color: "#555", lineHeight: 1.7, maxWidth: 560, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+            style={{ fontSize: 16, color: "#555", lineHeight: 1.7, maxWidth: 560, margin: "0 auto", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
             Every interaction makes her sharper. She learns, remembers, and picks up exactly where she left off — months later.
           </motion.p>
         </div>
@@ -769,15 +771,6 @@ function HowAryaWorksSection() {
           })}
         </div>
 
-        {/* CTA */}
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.5 }}
-          style={{ marginTop: 48, display: "flex", justifyContent: "flex-start" }}>
-          <a href="#talk-to-arya"
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 32px", fontSize: 14, fontWeight: 400, textTransform: "uppercase", borderRadius: 0, background: "#D95938", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-            Let Arya Call You
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-        </motion.div>
       </div>
     </section>
   );
