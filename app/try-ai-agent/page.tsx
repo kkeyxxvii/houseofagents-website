@@ -910,7 +910,7 @@ function TalkToAryaContactForm() {
             </svg>
             Connecting...
           </>
-        ) : "Submit \u2014 Arya will call you \u2728"}
+        ) : "Submit"}
       </button>
       <p style={{ fontSize: 11, color: "#999", textAlign: "center", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
         No spam. No human SDRs. Just Arya calling you back.
@@ -970,10 +970,6 @@ function TalkToAryaSection() {
                     borderTop: "1px solid rgba(255,255,255,0.2)",
                   }}
                 >
-                  {/* Number */}
-                  <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif", flexShrink: 0, minWidth: 24 }}>
-                    {ch.num}
-                  </span>
                   {/* Icon box */}
                   <div style={{ width: 44, height: 44, flexShrink: 0, background: "rgba(0,0,0,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     {ch.icon}
@@ -1004,7 +1000,6 @@ function TalkToAryaSection() {
             initial={{ opacity: 0, x: 32 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.65, delay: 0.3 }}
             style={{ background: "#ffffff", display: "flex", flexDirection: "column" }}
           >
-            <div style={{ height: 3, background: "#111111" }} />
             <div style={{ padding: "48px 44px 44px", flex: 1 }}>
               <h3 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 28, fontWeight: 400, color: "#000000", margin: "0 0 8px" }}>
                 Let Arya call you.
