@@ -875,7 +875,7 @@ function TalkToAryaContactForm() {
       {/* Phone */}
       <div>
         <label style={lbl}>Phone Number</label>
-        <input type="tel" required placeholder="+91 98765 43210" value={form.phone}
+        <input type="tel" required placeholder="+91 XXXXX XXXXX" value={form.phone}
           onChange={(e) => setForm({ ...form, phone: e.target.value })} style={inp} />
       </div>
       {/* Email */}
