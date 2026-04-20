@@ -391,7 +391,7 @@ function StatsBar() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
   return (
-    <section ref={ref} style={{ background: "#0d2b26", padding: "80px 24px" }}>
+    <section ref={ref} style={{ background: "#0a0a0a", padding: "80px 24px" }}>
       <div className="container-site">
         {/* Heading + CTAs */}
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 56, flexWrap: "wrap", gap: 24 }}>
@@ -1274,13 +1274,11 @@ export default function TryAryaPage() {
         input:focus, select:focus { border-color: #D95938 !important; box-shadow: 0 0 0 2px rgba(217,89,56,0.12); }
       `}</style>
 
-      <Navbar />
+      <Navbar variant="light" />
       <main>
 
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section style={{ background: "#0b1d1a", minHeight: "100vh", paddingTop: 69, overflow: "hidden", position: "relative" }}>
-          {/* subtle noise/grain texture overlay */}
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(ellipse 80% 60% at 60% 50%, rgba(217,89,56,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <section style={{ background: "#ffffff", minHeight: "100vh", paddingTop: 69, overflow: "hidden", position: "relative" }}>
 
           <div style={{ position: "relative", height: "calc(100vh - 69px)", display: "flex", flexDirection: "column" }}>
 
@@ -1290,33 +1288,33 @@ export default function TryAryaPage() {
               {/* ── Left ── */}
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "64px 56px 64px 64px" }}>
 
-                {/* Pill badge — "Arya · Active" */}
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 0, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.14)", marginBottom: 36, width: "fit-content" }}>
-                  <span style={{ fontSize: 13, fontWeight: 400, color: "rgba(255,255,255,0.85)", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya · AI Sales Worker</span>
+                {/* Pill badge */}
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px", borderRadius: 0, background: "rgba(217,89,56,0.06)", border: "1px solid rgba(217,89,56,0.2)", marginBottom: 36, width: "fit-content" }}>
+                  <span style={{ fontSize: 13, fontWeight: 400, color: "#D95938", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya · AI Sales Worker</span>
                 </div>
 
-                {/* H1 — large, impactful */}
-                <h1 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4.8vw, 72px)", fontWeight: 400, color: "#ffffff", lineHeight: 1.04, margin: "0 0 28px", letterSpacing: "-0.01em" }}>
+                {/* H1 */}
+                <h1 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4.8vw, 72px)", fontWeight: 400, color: "#000000", lineHeight: 1.04, margin: "0 0 28px", letterSpacing: "-0.01em" }}>
                   The world&apos;s first<br />
                   <span style={{ color: "#D95938" }}>Super Human</span><br />
                   AI Sales Worker.
                 </h1>
 
                 {/* Description */}
-                <p style={{ fontSize: 16, color: "rgba(255,255,255,0.6)", lineHeight: 1.75, marginBottom: 12, maxWidth: 500, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                <p style={{ fontSize: 16, color: "#555555", lineHeight: 1.75, marginBottom: 12, maxWidth: 500, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                   Calls, qualifies, and closes leads across Voice, WhatsApp &amp; Email — with shared memory, real-time objection handling, and one relentless goal: run your revenue.
                 </p>
-                <p style={{ fontSize: 15, color: "rgba(255,255,255,0.4)", lineHeight: 1.6, marginBottom: 40, maxWidth: 480, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                <p style={{ fontSize: 15, color: "#999999", lineHeight: 1.6, marginBottom: 40, maxWidth: 480, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                   Enterprise-grade AI that works 24/7, on autopilot.
                 </p>
 
                 {/* Divider */}
-                <div style={{ width: "100%", maxWidth: 480, height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 36 }} />
+                <div style={{ width: "100%", maxWidth: 480, height: 1, background: "rgba(0,0,0,0.08)", marginBottom: 36 }} />
 
                 {/* CTA */}
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
                   <a href="#talk-to-arya"
-                    style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 28px", fontSize: 15, fontWeight: 400, borderRadius: 0, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif", backdropFilter: "blur(8px)" }}>
+                    style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 28px", fontSize: 15, fontWeight: 400, borderRadius: 0, background: "transparent", border: "1px solid rgba(0,0,0,0.2)", color: "#111111", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                     See how Arya works for your team
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                   </a>
@@ -1330,7 +1328,7 @@ export default function TryAryaPage() {
 
               {/* ── Right — floating rounded card ── */}
               <div className="ta-hero-video" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 48px 40px 16px" }}>
-                <div style={{ position: "relative", width: "100%", maxWidth: 420, height: "calc(100% - 0px)", minHeight: 480, borderRadius: 0, overflow: "hidden", boxShadow: "0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08)" }}>
+                <div style={{ position: "relative", width: "100%", maxWidth: 420, height: "calc(100% - 0px)", minHeight: 480, borderRadius: 0, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.08)" }}>
 
                   {/* Video */}
                   <video autoPlay muted loop playsInline
@@ -1371,8 +1369,8 @@ export default function TryAryaPage() {
               </div>
             </div>
 
-            {/* Logo marquee — dark, pinned at bottom */}
-            <LogoMarquee dark />
+            {/* Logo marquee — light, pinned at bottom */}
+            <LogoMarquee />
           </div>
         </section>
 
