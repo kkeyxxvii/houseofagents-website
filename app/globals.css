@@ -243,7 +243,10 @@ h1 {
     grid-template-columns: 1fr !important;
     min-height: auto !important;
   }
-  .ta-hero-video { display: none !important; }
+  .ta-hero-video { display: flex !important; padding: 0 16px 32px !important; }
+  .ta-hero-video-card { height: 320px !important; min-height: unset !important; }
+  .ta-hero-section { min-height: auto !important; }
+  .ta-hero-inner { min-height: auto !important; }
   .ta-2col { grid-template-columns: 1fr !important; }
   .ta-3col { grid-template-columns: 1fr !important; }
   .ta-stats-grid { grid-template-columns: 1fr !important; }

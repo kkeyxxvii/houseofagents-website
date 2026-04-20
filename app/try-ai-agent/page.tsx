@@ -1172,7 +1172,7 @@ function TryAryaTestimonials() {
             Let Our Amazing Clients Do The Talking
           </motion.h2>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="hidden lg:grid">
+        <div style={{ gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="hidden lg:grid">
           {testimonials.map((t, i) => (
             <motion.div key={t.name}
               initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -1262,9 +1262,9 @@ export default function TryAryaPage() {
       <main>
 
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section style={{ background: "#ffffff", minHeight: "100vh", paddingTop: 69, overflowX: "hidden", position: "relative" }}>
+        <section className="ta-hero-section" style={{ background: "#ffffff", minHeight: "100vh", paddingTop: 69, overflowX: "hidden", position: "relative" }}>
 
-          <div style={{ position: "relative", minHeight: "calc(100vh - 69px)", display: "flex", flexDirection: "column" }}>
+          <div className="ta-hero-inner" style={{ position: "relative", minHeight: "calc(100vh - 69px)", display: "flex", flexDirection: "column" }}>
 
             {/* Main 2-col grid */}
             <div className="ta-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", flex: 1, minHeight: 0, alignItems: "stretch" }}>
@@ -1302,7 +1302,7 @@ export default function TryAryaPage() {
 
               {/* ── Right — floating rounded card ── */}
               <div className="ta-hero-video" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 48px 40px 16px" }}>
-                <div style={{ position: "relative", width: "100%", maxWidth: 420, height: "calc(100% - 0px)", minHeight: 480, borderRadius: 0, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.08)" }}>
+                <div className="ta-hero-video-card" style={{ position: "relative", width: "100%", maxWidth: 420, height: "calc(100% - 0px)", minHeight: 480, borderRadius: 0, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.08)" }}>
 
                   {/* Video */}
                   <video autoPlay muted loop playsInline
