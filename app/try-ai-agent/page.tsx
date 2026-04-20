@@ -936,7 +936,7 @@ function TalkToAryaSection() {
           <div style={{ display: "flex", flexDirection: "column" }}>
 
             {/* Heading block */}
-            <div style={{ padding: "56px 48px 48px", textAlign: "center" }}>
+            <div style={{ padding: "56px 48px 48px", textAlign: "left" }}>
               <motion.h2
                 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
                 className="ta-h2"
@@ -946,7 +946,7 @@ function TalkToAryaSection() {
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.08 }}
-                style={{ fontSize: 15, color: "rgba(255,255,255,0.75)", margin: "0 auto", lineHeight: 1.7, fontFamily: "Plusjakartasans, Arial, sans-serif", maxWidth: 320 }}
+                style={{ fontSize: 15, color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.7, fontFamily: "Plusjakartasans, Arial, sans-serif", maxWidth: 320 }}
               >
                 This isn&apos;t a demo form. Arya is live. Talk to her right now.
               </motion.p>
