@@ -245,17 +245,41 @@ const channels = [
 /* ─── Problem cards ─────────────────────────────────────── */
 const problems = [
   {
-    icon: "📄",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D95938" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M10.68 13.31a16 16 0 003.41 2.6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7 2 2 0 011.72 2v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.42 19.42 0 01-3.41-2.6m-4.97-8.62a19.42 19.42 0 01-1.97-4.12 2 2 0 011-2.32" />
+        <line x1="23" y1="1" x2="1" y2="23" />
+      </svg>
+    ),
     title: "Voice agents crumble",
     desc: "Most voice bots can\u2019t handle noisy calls, accents, or real-time objections. Leads hang up frustrated and never come back.",
   },
   {
-    icon: "\uD83E\uDD16",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D95938" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="5" y="5" width="14" height="14" />
+        <rect x="9" y="9" width="6" height="6" />
+        <line x1="9" y1="1" x2="9" y2="5" />
+        <line x1="15" y1="1" x2="15" y2="5" />
+        <line x1="9" y1="19" x2="9" y2="23" />
+        <line x1="15" y1="19" x2="15" y2="23" />
+        <line x1="1" y1="9" x2="5" y2="9" />
+        <line x1="1" y1="15" x2="5" y2="15" />
+        <line x1="19" y1="9" x2="23" y2="9" />
+        <line x1="19" y1="15" x2="23" y2="15" />
+      </svg>
+    ),
     title: "WhatsApp bots feel robotic",
     desc: "Rigid decision trees. No memory. No personality. Prospects stop responding after the first templated message.",
   },
   {
-    icon: "\uD83E\uDDE0",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D95938" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+        <line x1="8" y1="8" x2="16" y2="16" />
+      </svg>
+    ),
     title: "Zero context across channels",
     desc: "Most \u201CAI agents\u201D forget everything between sessions. No continuity, no relationship. Leads slip through the cracks.",
   },
@@ -574,13 +598,14 @@ function TheProblemSection() {
     <section ref={ref} style={{ background: "#f8f7f7", padding: "100px 24px" }}>
       <div className="container-site">
         {/* Heading */}
-        <div style={{ marginBottom: 64 }}>
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
           <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
-            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4.5vw, 60px)", fontWeight: 300, color: "#000000", margin: "0 0 16px", lineHeight: 1.1 }}>
-            Silence is where your revenue goes to die.
+            className="ta-h2"
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4.5vw, 60px)", fontWeight: 300, color: "#000000", margin: "0 0 20px", lineHeight: 1.05 }}>
+            Silence is where your<br />revenue goes to die.
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }}
-            style={{ fontSize: 16, color: "#555555", maxWidth: 620, margin: 0, lineHeight: 1.7, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+            style={{ fontSize: 16, color: "#555555", maxWidth: 560, margin: "0 auto", lineHeight: 1.7, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
             The world doesn&apos;t need more bots. It needs a digital worker that owns the funnel, learns over time, and helps you close deals.
           </motion.p>
         </div>
@@ -592,7 +617,7 @@ function TheProblemSection() {
               initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.55, delay: 0.1 + i * 0.1 }}
               style={{ background: "#ffffff", border: "1px solid #e5e5e5", borderRadius: 0, padding: "36px 32px" }}>
-              <div style={{ width: 48, height: 48, borderRadius: 0, background: "#f4f4f4", border: "1px solid #ebebeb", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, marginBottom: 20 }}>
+              <div style={{ width: 48, height: 48, background: "rgba(217,89,56,0.08)", border: "1px solid rgba(217,89,56,0.18)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
                 {p.icon}
               </div>
               <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 20, fontWeight: 400, color: "#000000", margin: "0 0 12px" }}>
