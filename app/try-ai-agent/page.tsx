@@ -1292,20 +1292,15 @@ export default function TryAryaPage() {
                   Enterprise-grade AI that works 24/7, on autopilot.
                 </p>
 
-                {/* Divider */}
-                <div style={{ width: "100%", maxWidth: 480, height: 1, background: "rgba(0,0,0,0.08)", marginBottom: 36 }} />
-
                 {/* CTA */}
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
                   <a href="#talk-to-arya"
-                    style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 28px", fontSize: 15, fontWeight: 400, borderRadius: 0, background: "transparent", border: "1px solid rgba(0,0,0,0.2)", color: "#111111", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                    style={{ display: "inline-flex", alignItems: "center", padding: "14px 28px", fontSize: 15, fontWeight: 400, borderRadius: 0, background: "transparent", border: "1px solid rgba(0,0,0,0.2)", color: "#111111", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                     See how Arya works for your team
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                   </a>
                   <a href="tel:+919873322457"
-                    style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 24px", fontSize: 15, fontWeight: 400, borderRadius: 0, background: "#D95938", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                    style={{ display: "inline-flex", alignItems: "center", padding: "14px 24px", fontSize: 15, fontWeight: 400, borderRadius: 0, background: "#D95938", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                     Call Me
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                   </a>
                 </div>
               </div>
