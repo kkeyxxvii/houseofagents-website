@@ -221,7 +221,7 @@ const LIVE_METRICS = { calls: 847, qualified: 234, concurrent: 12 };
 const maskName = (name: string) =>
   name.split(" ").map((p) => p[0] + "·".repeat(Math.min(p.length - 1, 4))).join(" ");
 const maskPhone = (phone: string) =>
-  phone.replace(/(\+\d{2})\s?\d{5}(\d{5})/, "$1 ×××××$2");
+  phone.replace(/(\+\d{2})\s?\d{5}\s?(\d{5})/, "$1 ×××××$2");
 
 /* ─── Omni-channel data ─────────────────────────────────── */
 const channels = [
