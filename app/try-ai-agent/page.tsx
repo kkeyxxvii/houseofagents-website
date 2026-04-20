@@ -936,7 +936,7 @@ function TalkToAryaSection() {
           <div style={{ display: "flex", flexDirection: "column" }}>
 
             {/* Heading block */}
-            <div style={{ padding: "56px 48px 48px" }}>
+            <div style={{ padding: "56px 48px 48px", textAlign: "center" }}>
               <motion.h2
                 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
                 className="ta-h2"
@@ -946,7 +946,7 @@ function TalkToAryaSection() {
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.08 }}
-                style={{ fontSize: 15, color: "rgba(255,255,255,0.75)", margin: 0, lineHeight: 1.7, fontFamily: "Plusjakartasans, Arial, sans-serif", maxWidth: 380 }}
+                style={{ fontSize: 15, color: "rgba(255,255,255,0.75)", margin: "0 auto", lineHeight: 1.7, fontFamily: "Plusjakartasans, Arial, sans-serif", maxWidth: 320 }}
               >
                 This isn&apos;t a demo form. Arya is live. Talk to her right now.
               </motion.p>
@@ -980,13 +980,6 @@ function TalkToAryaSection() {
                       <p style={{ fontSize: 13, color: "#666666", lineHeight: 1.55, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                         {ch.desc}
                       </p>
-                    </div>
-                    {/* Arrow */}
-                    <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 600, color: ctaColor, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Plusjakartasans, Arial, sans-serif", flexShrink: 0 }}>
-                      {ch.cta}
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
-                      </svg>
                     </div>
                   </motion.a>
                 );
