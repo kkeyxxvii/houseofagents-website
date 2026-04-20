@@ -1262,9 +1262,9 @@ export default function TryAryaPage() {
       <main>
 
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section style={{ background: "#ffffff", minHeight: "100vh", paddingTop: 69, overflow: "hidden", position: "relative" }}>
+        <section style={{ background: "#ffffff", minHeight: "100vh", paddingTop: 69, overflowX: "hidden", position: "relative" }}>
 
-          <div style={{ position: "relative", height: "calc(100vh - 69px)", display: "flex", flexDirection: "column" }}>
+          <div style={{ position: "relative", minHeight: "calc(100vh - 69px)", display: "flex", flexDirection: "column" }}>
 
             {/* Main 2-col grid */}
             <div className="ta-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", flex: 1, minHeight: 0, alignItems: "stretch" }}>

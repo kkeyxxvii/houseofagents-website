@@ -15,13 +15,13 @@ const logos = [
 
 function LogoItem({ src, alt, dark }: { src: string; alt: string; dark?: boolean }) {
   return (
-    <div className={`flex items-center justify-center px-10 py-3 shrink-0 transition-opacity ${dark ? "opacity-40 hover:opacity-80" : "opacity-70 hover:opacity-100"}`}>
+    <div className={`flex items-center justify-center px-10 py-3 shrink-0 transition-opacity ${dark ? "opacity-40 hover:opacity-80" : "opacity-80 hover:opacity-100"}`}>
       <Image
         src={src}
         alt={alt}
         width={120}
         height={40}
-        className={`h-8 w-auto object-contain${dark ? " brightness-0 invert" : " grayscale brightness-0"}`}
+        className={`h-8 w-auto object-contain${dark ? " brightness-0 invert" : " grayscale brightness-[0.2]"}`}
         unoptimized
       />
     </div>
