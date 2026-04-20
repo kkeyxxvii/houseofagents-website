@@ -513,29 +513,28 @@ function LiveActivitySection() {
           className="ta-convo-wrapper" style={{ maxWidth: 960, margin: "0 auto", border: "1px solid #e5e5e5", borderRadius: 0, overflow: "hidden", display: "flex" }}>
 
           {/* Left — call info panel */}
-          <div className="ta-convo-left" style={{ width: 260, flexShrink: 0, background: "#0a0a0a", padding: "28px 24px", display: "flex", flexDirection: "column", gap: 24 }}>
+          <div className="ta-convo-left" style={{ width: 260, flexShrink: 0, background: "#D95938", padding: "28px 24px", display: "flex", flexDirection: "column", gap: 24 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#ef4444", display: "inline-block", boxShadow: "0 0 0 3px rgba(239,68,68,0.2)" }} />
-              <span style={{ fontSize: 11, fontWeight: 700, color: "#ef4444", letterSpacing: "0.12em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>LIVE CALL</span>
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#ffffff", display: "inline-block", boxShadow: "0 0 0 3px rgba(255,255,255,0.3)" }} />
+              <span style={{ fontSize: 11, fontWeight: 700, color: "#ffffff", letterSpacing: "0.12em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>LIVE CALL</span>
             </div>
             <div>
               <p style={{ fontSize: 16, fontWeight: 600, color: "#ffffff", margin: "0 0 4px", fontFamily: "Bdogrotesk, Arial, sans-serif" }}>{maskName(scenario.caller)}</p>
-              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.5)", margin: "0 0 4px", fontFamily: "Plusjakartasans, Arial, sans-serif", letterSpacing: "0.04em" }}>{maskPhone(scenario.phone)}</p>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{scenario.industry}</p>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.65)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{scenario.industry}</p>
             </div>
-            <div style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 0, padding: "12px 16px" }}>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Duration</p>
+            <div style={{ background: "rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 0, padding: "12px 16px" }}>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Duration</p>
               <p style={{ fontSize: 22, fontWeight: 300, color: "#ffffff", margin: 0, fontFamily: "Bdogrotesk, Arial, sans-serif", letterSpacing: "0.05em" }}>{mins}:{secs}</p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {[
-                { label: "Active concurrent", value: LIVE_METRICS.concurrent.toString(), color: "#D95938" },
-                { label: "Calls today", value: LIVE_METRICS.calls.toString(), color: "#ffffff" },
-                { label: "Leads qualified", value: LIVE_METRICS.qualified.toString(), color: "#16a34a" },
+                { label: "Active concurrent", value: LIVE_METRICS.concurrent.toString() },
+                { label: "Calls today", value: LIVE_METRICS.calls.toString() },
+                { label: "Leads qualified", value: LIVE_METRICS.qualified.toString() },
               ].map((m) => (
-                <div key={m.label} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 0, padding: "10px 14px" }}>
-                  <p style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{m.label}</p>
-                  <p style={{ fontSize: 18, fontWeight: 300, color: m.color, margin: 0, fontFamily: "Bdogrotesk, Arial, sans-serif" }}>{m.value}</p>
+                <div key={m.label} style={{ background: "rgba(0,0,0,0.1)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 0, padding: "10px 14px" }}>
+                  <p style={{ fontSize: 10, color: "rgba(255,255,255,0.7)", margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{m.label}</p>
+                  <p style={{ fontSize: 18, fontWeight: 300, color: "#ffffff", margin: 0, fontFamily: "Bdogrotesk, Arial, sans-serif" }}>{m.value}</p>
                 </div>
               ))}
             </div>
