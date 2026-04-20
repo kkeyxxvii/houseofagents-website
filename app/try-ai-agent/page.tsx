@@ -393,22 +393,12 @@ function StatsBar() {
   return (
     <section ref={ref} style={{ background: "#0a0a0a", padding: "80px 24px" }}>
       <div className="container-site">
-        {/* Heading + CTAs */}
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 56, flexWrap: "wrap", gap: 24 }}>
+        {/* Heading */}
+        <div style={{ marginBottom: 56 }}>
           <motion.h2 initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
             style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 300, color: "#ffffff", margin: 0, lineHeight: 1.1 }}>
             Arya&apos;s Average Impact
           </motion.h2>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }}
-            style={{ display: "flex", gap: 12 }}>
-            <a href="#talk-to-arya" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 24px", fontSize: 14, fontWeight: 400, textTransform: "uppercase", borderRadius: 0, background: "#D95938", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-              Book a Demo
-            </a>
-            <a href="tel:+919873322457" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "13px 24px", fontSize: 14, fontWeight: 400, textTransform: "uppercase", borderRadius: 0, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "#ffffff", textDecoration: "none", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-              Call Me
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            </a>
-          </motion.div>
         </div>
 
         {/* Divider */}
