@@ -956,28 +956,28 @@ function FeaturesSection() {
           </motion.h2>
         </div>
 
-        {/* 3-col grid — image first, then title + desc */}
-        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+        {/* 3-col grid — image first, then title + desc (matches houseofagents.ai exactly) */}
+        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 32 }}>
           {features.map((f, i) => (
             <motion.div key={f.title}
               initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.05 + i * 0.07 }}
-              style={{ display: "flex", flexDirection: "column", overflow: "hidden", background: "#ffffff" }}>
+              style={{ display: "flex", flexDirection: "column" }}>
 
-              {/* Illustration — top, fills card width */}
-              <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", overflow: "hidden", background: "#f5f0eb", flexShrink: 0 }}>
+              {/* Illustration — 4:3 ratio, contain so full mockup is visible */}
+              <div style={{ position: "relative", width: "100%", aspectRatio: "4/3", background: "#f5f0eb", flexShrink: 0, overflow: "hidden" }}>
                 <Image
                   src={featureIllustrations[i]}
                   alt={f.title}
                   fill
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "contain" }}
                   unoptimized
                 />
               </div>
 
-              {/* Text content */}
-              <div style={{ padding: "24px 4px 8px" }}>
-                <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 20, fontWeight: 400, color: "#1a1a1a", margin: "0 0 10px", lineHeight: 1.25 }}>
+              {/* Text — flush left, no horizontal padding (matches reference) */}
+              <div style={{ paddingTop: 20, paddingBottom: 12 }}>
+                <h4 style={{ fontFamily: "Plusjakartasans, Arial, sans-serif", fontSize: 19, fontWeight: 600, color: "#111111", margin: "0 0 10px", lineHeight: 1.3 }}>
                   {f.title}
                 </h4>
                 <p style={{ fontSize: 14, color: "#555555", lineHeight: 1.7, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
