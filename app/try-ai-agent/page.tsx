@@ -171,57 +171,27 @@ const countryCodes = [
   { code: "+81", flag: "\uD83C\uDDEF\uD83C\uDDF5", name: "Japan" },
 ];
 
-/* ─── Live Conversation Simulator Data ─────────────────── */
-const CALL_SCENARIOS = [
+/* ─── Demo call thumbnails ──────────────────────────────── */
+const demoCalls = [
   {
-    caller: "Priya Sharma",
-    phone: "+91 98765 43210",
-    industry: "Wealth Management · Mumbai",
-    script: [
-      { speaker: "arya", text: "Hi Priya! This is Arya calling from House of Agents. How are you doing today?" },
-      { speaker: "lead", text: "Hi, yes — who is this exactly?" },
-      { speaker: "arya", text: "I'm Arya, an AI assistant. You recently expressed interest in our portfolio management solutions for your team of distributors." },
-      { speaker: "lead", text: "Oh yes, I did fill a form. What can you offer?" },
-      { speaker: "arya", text: "We help wealth managers like you automate welcome calls, NFO campaigns, and SIP activations across 50,000+ distributors — without hiring more agents." },
-      { speaker: "lead", text: "That's interesting. What's the typical onboarding time?" },
-      { speaker: "arya", text: "Most clients are live within 72 hours. I can schedule a 20-minute demo with our team — would Tuesday or Wednesday work better for you?" },
-    ],
+    label: "Wealth Management",
+    desc: "Arya handles inbound distributor queries and books SIP calls",
+    thumbnail: `${CDN2}/68e370db885561bc786e1d4f_wealth%20management%20usecase.avif`,
+    duration: "2:25",
   },
   {
-    caller: "Arjun Mehta",
-    phone: "+91 88001 23456",
-    industry: "EdTech Sales · Bengaluru",
-    script: [
-      { speaker: "arya", text: "Hi Arjun! Arya here from House of Agents. You inquired about scaling your student outreach — got a minute?" },
-      { speaker: "lead", text: "Sure, but make it quick." },
-      { speaker: "arya", text: "Absolutely. We help EdTech teams like yours qualify inbound leads in under 8 seconds and pass only serious prospects to advisors." },
-      { speaker: "lead", text: "Our connect rates are terrible right now. How does it work?" },
-      { speaker: "arya", text: "I make the first call within seconds of form submission — 24/7 — so no lead goes cold. I handle objections and book slots directly into your calendar." },
-      { speaker: "lead", text: "Sounds good. Can we do a trial?" },
-      { speaker: "arya", text: "Yes! I'll have our team reach out within the hour to set up your pilot. Does your current email still work — arjun@company.in?" },
-    ],
+    label: "Real Estate",
+    desc: "After-hours lead responds within 15 min, site visit booked automatically",
+    thumbnail: `${CDN2}/68e370ceb43b7ba5414acad6_Real%20Estate.avif`,
+    duration: "1:37",
   },
   {
-    caller: "Kavita Menon",
-    phone: "+91 77009 87654",
-    industry: "Real Estate · Pune",
-    script: [
-      { speaker: "arya", text: "Hello Kavita! This is Arya. I see your team handles inbound site visit requests — is this a good time?" },
-      { speaker: "lead", text: "Yes, go ahead." },
-      { speaker: "arya", text: "We help real estate teams respond to every inbound lead within 15 minutes — even at 2am — and book site visits automatically." },
-      { speaker: "lead", text: "We currently miss a lot of after-hours leads." },
-      { speaker: "arya", text: "Exactly the problem we solve. With Arya, all after-hours inquiries get an instant call, qualification, and visit scheduling — zero human effort." },
-      { speaker: "lead", text: "How many visits can you drive per month?" },
-      { speaker: "arya", text: "Our clients typically see a 30–40% lift in site visits within the first 30 days. I'd love to show you the numbers — shall I send a case study to your email?" },
-    ],
+    label: "EdTech",
+    desc: "Student inquiry qualified in seconds, advisor slot filled same day",
+    thumbnail: `${CDN2}/68e37095a276b3c16c819a5a_EdTech.avif`,
+    duration: "3:40",
   },
 ];
-const LIVE_METRICS = { calls: 847, qualified: 234, concurrent: 12 };
-
-const maskName = (name: string) =>
-  name.split(" ").map((p) => p[0] + "·".repeat(Math.min(p.length - 1, 4))).join(" ");
-const maskPhone = (phone: string) =>
-  phone.replace(/(\+\d{2})\s?\d{5}\s?(\d{5})/, "$1 ×××××$2");
 
 /* ─── Omni-channel data ─────────────────────────────────── */
 const channels = [
@@ -428,61 +398,10 @@ function StatsBar() {
   );
 }
 
-/* ─── Live Activity Section ─────────────────────────────── */
-function LiveActivitySection() {
+/* ─── Demo Calls Section ────────────────────────────────── */
+function DemoCallsSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [scenarioIdx, setScenarioIdx] = useState(0);
-  const [bubbles, setBubbles] = useState<{ speaker: string; text: string; id: number }[]>([]);
-  const [isTyping, setIsTyping] = useState(false);
-  const [callSecs, setCallSecs] = useState(14);
-  const lineRef = useRef(0);
-  const chatRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!inView) return;
-    const scenario = CALL_SCENARIOS[scenarioIdx];
-    lineRef.current = 0;
-    setBubbles([]);
-    setCallSecs(14);
-    setIsTyping(false);
-
-    const timerInterval = setInterval(() => setCallSecs((s) => s + 1), 1000);
-
-    let lineTimeout: ReturnType<typeof setTimeout>;
-    let lineInterval: ReturnType<typeof setInterval>;
-
-    const addLine = () => {
-      const line = scenario.script[lineRef.current];
-      if (!line) {
-        setTimeout(() => setScenarioIdx((prev) => (prev + 1) % CALL_SCENARIOS.length), 3000);
-        return;
-      }
-      setIsTyping(true);
-      lineTimeout = setTimeout(() => {
-        setIsTyping(false);
-        setBubbles((prev) => [...prev, { ...line, id: Date.now() }]);
-        lineRef.current += 1;
-        setTimeout(() => {
-          if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight;
-        }, 50);
-      }, 1200);
-    };
-
-    addLine();
-    lineInterval = setInterval(addLine, 2800);
-
-    return () => {
-      clearInterval(timerInterval);
-      clearInterval(lineInterval);
-      clearTimeout(lineTimeout);
-    };
-  }, [inView, scenarioIdx]);
-
-  const scenario = CALL_SCENARIOS[scenarioIdx];
-  const mins = Math.floor(callSecs / 60).toString().padStart(2, "0");
-  const secs = (callSecs % 60).toString().padStart(2, "0");
-
   return (
     <section ref={ref} className="ta-section-padding" style={{ background: "#ffffff", padding: "100px 24px" }}>
       <div className="container-site">
@@ -490,92 +409,54 @@ function LiveActivitySection() {
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
             style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4.5vw, 60px)", fontWeight: 300, color: "#000000", margin: "0 0 16px", lineHeight: 1.1 }}>
-            Arya is working right now.
+            Watch Arya in action.
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.08 }}
             style={{ fontSize: 16, color: "#555555", maxWidth: 560, margin: "0 auto", lineHeight: 1.7, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-            Watch her qualify a live lead — in real time.
+            Real conversations. Real results. No scripts — just Arya qualifying leads, handling objections, and booking meetings.
           </motion.p>
         </div>
 
-        {/* Conversation Simulator */}
-        <motion.div initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.2 }}
-          className="ta-convo-wrapper" style={{ maxWidth: 960, margin: "0 auto", border: "1px solid #e5e5e5", borderRadius: 0, overflow: "hidden", display: "flex" }}>
-
-          {/* Left — call info panel */}
-          <div className="ta-convo-left" style={{ width: 260, flexShrink: 0, background: "#D95938", padding: "28px 24px", display: "flex", flexDirection: "column", gap: 24 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#ffffff", display: "inline-block", boxShadow: "0 0 0 3px rgba(255,255,255,0.3)" }} />
-              <span style={{ fontSize: 11, fontWeight: 700, color: "#ffffff", letterSpacing: "0.12em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>LIVE CALL</span>
-            </div>
-            <div>
-              <p style={{ fontSize: 16, fontWeight: 600, color: "#ffffff", margin: "0 0 4px", fontFamily: "Bdogrotesk, Arial, sans-serif" }}>{maskName(scenario.caller)}</p>
-              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.75)", margin: "0 0 4px", fontFamily: "Plusjakartasans, Arial, sans-serif", letterSpacing: "0.04em" }}>{maskPhone(scenario.phone)}</p>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{scenario.industry}</p>
-            </div>
-            <div style={{ background: "rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 0, padding: "12px 16px" }}>
-              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Duration</p>
-              <p style={{ fontSize: 22, fontWeight: 300, color: "#ffffff", margin: 0, fontFamily: "Bdogrotesk, Arial, sans-serif", letterSpacing: "0.05em" }}>{mins}:{secs}</p>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {[
-                { label: "Active concurrent", value: LIVE_METRICS.concurrent.toString() },
-                { label: "Calls today", value: LIVE_METRICS.calls.toString() },
-                { label: "Leads qualified", value: LIVE_METRICS.qualified.toString() },
-              ].map((m) => (
-                <div key={m.label} style={{ background: "rgba(0,0,0,0.1)", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 0, padding: "10px 14px" }}>
-                  <p style={{ fontSize: 10, color: "rgba(255,255,255,0.7)", margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{m.label}</p>
-                  <p style={{ fontSize: 18, fontWeight: 300, color: "#ffffff", margin: 0, fontFamily: "Bdogrotesk, Arial, sans-serif" }}>{m.value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right — chat transcript */}
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", background: "#ffffff" }}>
-            <div style={{ padding: "16px 24px", borderBottom: "1px solid #f0f0f0", display: "flex", alignItems: "center", gap: 10 }}>
-              <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#D95938", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ fontSize: 13, fontWeight: 600, color: "#ffffff", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>A</span>
-              </div>
-              <div>
-                <p style={{ fontSize: 13, fontWeight: 600, color: "#111", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya</p>
-                <p style={{ fontSize: 11, color: "#16a34a", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>● On call</p>
-              </div>
-            </div>
-            <div ref={chatRef} style={{ flex: 1, padding: "20px 24px", overflowY: "auto", display: "flex", flexDirection: "column", gap: 12, minHeight: 320, maxHeight: 320 }}>
-              <AnimatePresence>
-                {bubbles.map((b) => (
-                  <motion.div key={b.id}
-                    initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}
-                    style={{ display: "flex", justifyContent: b.speaker === "arya" ? "flex-start" : "flex-end" }}>
-                    <div style={{
-                      maxWidth: "75%", padding: "10px 14px", borderRadius: 0,
-                      background: b.speaker === "arya" ? "rgba(217,89,56,0.07)" : "#f4f4f4",
-                      border: b.speaker === "arya" ? "1px solid rgba(217,89,56,0.2)" : "1px solid #e8e8e8",
-                    }}>
-                      <p style={{ fontSize: 11, color: b.speaker === "arya" ? "#D95938" : "#888", margin: "0 0 4px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                        {b.speaker === "arya" ? "Arya" : maskName(scenario.caller.split(" ")[0])}
-                      </p>
-                      <p style={{ fontSize: 14, color: "#111", margin: 0, lineHeight: 1.55, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{b.text}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-              {isTyping && (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  style={{ display: "flex", justifyContent: "flex-start" }}>
-                  <div style={{ padding: "10px 16px", background: "rgba(217,89,56,0.07)", border: "1px solid rgba(217,89,56,0.2)", borderRadius: 0, display: "flex", gap: 4, alignItems: "center" }}>
-                    {[0, 1, 2].map((i) => (
-                      <span key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: "#D95938", display: "inline-block", animation: `liveBounce 1.2s ease-in-out ${i * 0.2}s infinite` }} />
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </div>
-          </div>
+        {/* Featured video embed */}
+        <motion.div initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.15 }}
+          style={{ position: "relative", width: "100%", maxWidth: 900, margin: "0 auto 56px", aspectRatio: "16/9", overflow: "hidden", border: "1px solid #e5e5e5" }}>
+          <iframe
+            src="https://www.veed.io/embed/6ce076d0-0d1b-45d6-bb84-b9d45f2de4c6"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
+            allow="autoplay; fullscreen"
+            allowFullScreen
+          />
         </motion.div>
+
+        {/* 3 call thumbnail cards */}
+        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          {demoCalls.map((call, i) => (
+            <motion.div key={call.label}
+              initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
+              style={{ display: "flex", flexDirection: "column", gap: 0, border: "1px solid #e5e5e5" }}>
+              {/* Thumbnail */}
+              <div style={{ position: "relative", aspectRatio: "16/9", overflow: "hidden", background: "#111" }}>
+                <Image src={call.thumbnail} alt={call.label} fill
+                  style={{ objectFit: "cover" }} unoptimized />
+                <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.25)" }} />
+                {/* Play button */}
+                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 44, height: 44, borderRadius: "50%", background: "rgba(217,89,56,0.9)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff"><polygon points="5,3 19,12 5,21" /></svg>
+                </div>
+                <div style={{ position: "absolute", bottom: 8, right: 8, background: "rgba(0,0,0,0.65)", color: "#fff", fontSize: 11, fontFamily: "Plusjakartasans, Arial, sans-serif", padding: "3px 8px" }}>
+                  {call.duration} min
+                </div>
+              </div>
+              {/* Label */}
+              <div style={{ padding: "16px 20px" }}>
+                <p style={{ fontSize: 13, fontWeight: 600, color: "#D95938", margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.07em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{call.label}</p>
+                <p style={{ fontSize: 13, color: "#555", margin: 0, lineHeight: 1.55, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{call.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-      <style>{`@keyframes liveBounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-5px); } }`}</style>
     </section>
   );
 }
@@ -711,55 +592,70 @@ function HowAryaWorksSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section ref={ref} className="ta-section-padding" style={{ background: "#f8f7f7", padding: "100px 24px" }}>
-      <div className="container-site">
-        {/* Heading */}
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
-            className="ta-h2"
-            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 300, color: "#000000", margin: "0 0 4px", lineHeight: 1.08 }}>
-            She doesn&apos;t just automate.
-          </motion.h2>
-          <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.06 }}
-            className="ta-h2"
-            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 300, color: "#000000", margin: "0 0 24px", lineHeight: 1.08 }}>
-            She <span style={{ color: "#D95938" }}>owns the funnel.</span>
-          </motion.h2>
-          <motion.p initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.1 }}
-            style={{ fontSize: 16, color: "#555", lineHeight: 1.7, maxWidth: 560, margin: "0 auto", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-            Every interaction makes her sharper. She learns, remembers, and picks up exactly where she left off — months later.
-          </motion.p>
-        </div>
+    <section ref={ref} style={{ background: "#0a0a0a", overflow: "hidden" }}>
+      <div className="ta-2col ta-how-arya-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 700 }}>
 
-        {/* 3×2 numbered card grid */}
-        <div className="ta-steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }}>
-          {howAryaSteps.map((step, i) => {
-            const col = i % 3;
-            const row = Math.floor(i / 3);
-            const totalRows = Math.ceil(howAryaSteps.length / 3);
-            return (
+        {/* ── Left — heading + steps ── */}
+        <motion.div
+          initial={{ opacity: 0, x: -24 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.7 }}
+          style={{ padding: "80px 56px 80px 0", display: "flex", flexDirection: "column", justifyContent: "center" }}
+          className="ta-hero-left-pad">
+
+          {/* Heading */}
+          <div style={{ marginBottom: 52 }}>
+            <h2 className="ta-h2"
+              style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 3.5vw, 52px)", fontWeight: 300, color: "#ffffff", margin: "0 0 4px", lineHeight: 1.08 }}>
+              She doesn&apos;t just automate.
+            </h2>
+            <h2 className="ta-h2"
+              style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 3.5vw, 52px)", fontWeight: 300, color: "#ffffff", margin: "0 0 20px", lineHeight: 1.08 }}>
+              She <span style={{ color: "#D95938" }}>owns the funnel.</span>
+            </h2>
+            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.5)", lineHeight: 1.7, margin: 0, maxWidth: 420, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+              Every interaction makes her sharper. She learns, remembers, and picks up exactly where she left off — months later.
+            </p>
+          </div>
+
+          {/* Vertical step list */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {howAryaSteps.map((step, i) => (
               <motion.div key={step.num}
-                initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.08 + i * 0.06 }}
-                style={{
-                  padding: "36px 32px",
-                  borderRight: col < 2 ? "1px solid #e5e5e5" : "none",
-                  borderBottom: row < totalRows - 1 ? "1px solid #e5e5e5" : "none",
-                  background: "#ffffff",
-                }}>
-                <p style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 36, fontWeight: 300, color: "#D95938", margin: "0 0 20px", lineHeight: 1, opacity: 0.7 }}>
+                initial={{ opacity: 0, x: -16 }} animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.45, delay: 0.2 + i * 0.07 }}
+                style={{ display: "flex", gap: 20, padding: "18px 0", borderBottom: i < howAryaSteps.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none", alignItems: "flex-start" }}>
+                <span style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 22, fontWeight: 300, color: "#D95938", lineHeight: 1, flexShrink: 0, width: 32, paddingTop: 2 }}>
                   {step.num}
-                </p>
-                <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 17, fontWeight: 400, color: "#000000", margin: "0 0 10px", lineHeight: 1.35 }}>
-                  {step.title}
-                </h4>
-                <p style={{ fontSize: 14, color: "#666", lineHeight: 1.7, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                  {step.desc}
-                </p>
+                </span>
+                <div>
+                  <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 15, fontWeight: 400, color: "#ffffff", margin: "0 0 4px", lineHeight: 1.3 }}>
+                    {step.title}
+                  </h4>
+                  <p style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                    {step.desc}
+                  </p>
+                </div>
               </motion.div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* ── Right — video visual ── */}
+        <motion.div
+          initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.9, delay: 0.1 }}
+          style={{ position: "relative", overflow: "hidden", minHeight: 500 }}
+          className="ta-how-arya-video">
+          <video autoPlay muted loop playsInline
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}>
+            <source src={ARYA_VIDEO} type="video/mp4" />
+          </video>
+          {/* Dark overlay for readability */}
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.5) 0%, transparent 40%), linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 50%)" }} />
+          {/* Bottom label */}
+          <div style={{ position: "absolute", bottom: 28, left: 28, right: 28 }}>
+            <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.12em", margin: "0 0 6px", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Live</p>
+            <p style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 20, fontWeight: 300, color: "#ffffff", margin: 0, lineHeight: 1.2 }}>Arya, on a real call right now.</p>
+          </div>
+        </motion.div>
 
       </div>
     </section>
@@ -1018,42 +914,21 @@ function TalkToAryaSection() {
 }
 
 /* ─── Launch Video Section ──────────────────────────────── */
-function LaunchVideoSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <section ref={ref} className="ta-section-padding" style={{ background: "#0a0a0a", padding: "100px 24px" }}>
-      <div className="container-site">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
-          style={{ textAlign: "center", marginBottom: 52 }}>
-          <h2 className="ta-h2" style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 300, color: "#ffffff", margin: "0 0 16px", lineHeight: 1.1 }}>
-            Watch Arya in action.
-          </h2>
-          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.5)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif", lineHeight: 1.6 }}>
-            See how Arya qualifies leads, handles objections, and books meetings — live.
-          </p>
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.15 }}
-          style={{ position: "relative", width: "100%", maxWidth: 900, margin: "0 auto", aspectRatio: "16/9", borderRadius: 0, overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)" }}>
-          <iframe
-            src="https://www.veed.io/embed/6ce076d0-0d1b-45d6-bb84-b9d45f2de4c6"
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
-            allow="autoplay; fullscreen"
-            allowFullScreen
-          />
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
 /* ─── Features Section ──────────────────────────────────── */
+const featureIllustrations = [
+  `${CDN2}/68e370db885561bc786e1d4f_wealth%20management%20usecase.avif`,
+  `${CDN2}/68e370ceb43b7ba5414acad6_Real%20Estate.avif`,
+  `${CDN2}/68e37085f83cb0624df62209_Upsell%20Services.avif`,
+  `${CDN2}/68e37095a276b3c16c819a5a_EdTech.avif`,
+  `${CDN2}/68e370bc34626e384285da5c_DSA%20pre%20qualification.avif`,
+  `${CDN2}/68e370ac23fb79cadf384014_SIP%20upgrade.avif`,
+];
+
 function FeaturesSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section ref={ref} className="ta-section-padding" style={{ background: "#ffffff", padding: "100px 24px" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#f8f7f7", padding: "100px 24px" }}>
       <div className="container-site">
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
@@ -1061,27 +936,33 @@ function FeaturesSection() {
             Arya is capable of
           </motion.h2>
         </div>
-        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0 }}>
-          {features.map((f, i) => {
-            const col = i % 3;
-            const row = Math.floor(i / 3);
-            const isLastCol = col === 2;
-            const isTopRow = row === 0;
-            return (
-              <motion.div key={f.title}
-                initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.05 + i * 0.07 }}
-                style={{ padding: 40, borderRight: isLastCol ? "none" : "1px solid #e5e5e5", borderBottom: isTopRow ? "1px solid #e5e5e5" : "none" }}>
-                <Image src={f.icon} alt="" width={44} height={44} style={{ width: 44, height: 44, marginBottom: 20 }} unoptimized />
-                <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 20, fontWeight: 400, color: "#000", margin: "0 0 12px" }}>
+        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          {features.map((f, i) => (
+            <motion.div key={f.title}
+              initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.05 + i * 0.08 }}
+              style={{ background: "#ffffff", border: "1px solid #e5e5e5", display: "flex", flexDirection: "column", overflow: "hidden" }}>
+              {/* Illustration */}
+              <div style={{ position: "relative", aspectRatio: "16/10", overflow: "hidden", background: "#111", flexShrink: 0 }}>
+                <Image src={featureIllustrations[i]} alt={f.title} fill
+                  style={{ objectFit: "cover", transition: "transform 0.5s ease" }} unoptimized />
+                <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.18)" }} />
+                {/* Small icon badge */}
+                <div style={{ position: "absolute", top: 14, left: 14, width: 36, height: 36, background: "#D95938", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Image src={f.icon} alt="" width={20} height={20} style={{ width: 20, height: 20, filter: "brightness(0) invert(1)" }} unoptimized />
+                </div>
+              </div>
+              {/* Content */}
+              <div style={{ padding: "24px 28px 28px" }}>
+                <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 19, fontWeight: 400, color: "#000", margin: "0 0 10px", lineHeight: 1.25 }}>
                   {f.title}
                 </h4>
-                <p style={{ fontSize: 15, color: "#555", lineHeight: 1.7, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                   {f.desc}
                 </p>
-              </motion.div>
-            );
-          })}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -1356,8 +1237,8 @@ export default function TryAryaPage() {
         {/* ── Stats ────────────────────────────────────────── */}
         <StatsBar />
 
-        {/* ── Live Activity ─────────────────────────────────── */}
-        <LiveActivitySection />
+        {/* ── Demo Calls ────────────────────────────────────── */}
+        <DemoCallsSection />
 
         {/* ── The Problem ───────────────────────────────────── */}
         <TheProblemSection />
@@ -1370,9 +1251,6 @@ export default function TryAryaPage() {
 
         {/* ── Talk to Arya ─────────────────────────────────── */}
         <TalkToAryaSection />
-
-        {/* ── Launch Video ─────────────────────────────────── */}
-        <LaunchVideoSection />
 
         {/* ── Features ─────────────────────────────────────── */}
         <FeaturesSection />

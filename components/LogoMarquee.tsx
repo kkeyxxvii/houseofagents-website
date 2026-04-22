@@ -15,13 +15,13 @@ const logos = [
 
 function LogoItem({ src, alt, dark }: { src: string; alt: string; dark?: boolean }) {
   return (
-    <div className={`flex items-center justify-center px-10 py-3 shrink-0 transition-opacity ${dark ? "opacity-40 hover:opacity-80" : "opacity-80 hover:opacity-100"}`}>
+    <div className={`flex items-center justify-center px-8 py-0 shrink-0 transition-opacity ${dark ? "opacity-40 hover:opacity-80" : "opacity-80 hover:opacity-100"}`}>
       <Image
         src={src}
         alt={alt}
         width={120}
         height={40}
-        className={`h-8 w-auto object-contain${dark ? " brightness-0 invert" : " grayscale brightness-[0.2]"}`}
+        className={`h-7 w-auto object-contain${dark ? " brightness-0 invert" : " grayscale brightness-[0.2]"}`}
         unoptimized
       />
     </div>
@@ -32,7 +32,7 @@ export default function LogoMarquee({ dark }: { dark?: boolean }) {
   const doubled = [...logos, ...logos];
 
   return (
-    <div className={`overflow-hidden ${dark ? "bg-transparent" : "py-10 border-y border-border bg-surface"}`}>
+    <div className={`overflow-hidden ${dark ? "bg-transparent" : "py-4 border-y border-border bg-surface"}`}>
       <div className="relative">
         {/* Left fade */}
         <div
