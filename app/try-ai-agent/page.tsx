@@ -171,6 +171,58 @@ const countryCodes = [
   { code: "+81", flag: "\uD83C\uDDEF\uD83C\uDDF5", name: "Japan" },
 ];
 
+/* ─── Live Conversation Simulator Data ─────────────────── */
+const CALL_SCENARIOS = [
+  {
+    caller: "Priya Sharma",
+    phone: "+91 98765 43210",
+    industry: "Wealth Management · Mumbai",
+    script: [
+      { speaker: "arya", text: "Hi Priya! This is Arya calling from House of Agents. How are you doing today?" },
+      { speaker: "lead", text: "Hi, yes — who is this exactly?" },
+      { speaker: "arya", text: "I'm Arya, an AI assistant. You recently expressed interest in our portfolio management solutions for your team of distributors." },
+      { speaker: "lead", text: "Oh yes, I did fill a form. What can you offer?" },
+      { speaker: "arya", text: "We help wealth managers like you automate welcome calls, NFO campaigns, and SIP activations across 50,000+ distributors — without hiring more agents." },
+      { speaker: "lead", text: "That's interesting. What's the typical onboarding time?" },
+      { speaker: "arya", text: "Most clients are live within 72 hours. I can schedule a 20-minute demo with our team — would Tuesday or Wednesday work better for you?" },
+    ],
+  },
+  {
+    caller: "Arjun Mehta",
+    phone: "+91 88001 23456",
+    industry: "EdTech Sales · Bengaluru",
+    script: [
+      { speaker: "arya", text: "Hi Arjun! Arya here from House of Agents. You inquired about scaling your student outreach — got a minute?" },
+      { speaker: "lead", text: "Sure, but make it quick." },
+      { speaker: "arya", text: "Absolutely. We help EdTech teams like yours qualify inbound leads in under 8 seconds and pass only serious prospects to advisors." },
+      { speaker: "lead", text: "Our connect rates are terrible right now. How does it work?" },
+      { speaker: "arya", text: "I make the first call within seconds of form submission — 24/7 — so no lead goes cold. I handle objections and book slots directly into your calendar." },
+      { speaker: "lead", text: "Sounds good. Can we do a trial?" },
+      { speaker: "arya", text: "Yes! I'll have our team reach out within the hour to set up your pilot. Does your current email still work — arjun@company.in?" },
+    ],
+  },
+  {
+    caller: "Kavita Menon",
+    phone: "+91 77009 87654",
+    industry: "Real Estate · Pune",
+    script: [
+      { speaker: "arya", text: "Hello Kavita! This is Arya. I see your team handles inbound site visit requests — is this a good time?" },
+      { speaker: "lead", text: "Yes, go ahead." },
+      { speaker: "arya", text: "We help real estate teams respond to every inbound lead within 15 minutes — even at 2am — and book site visits automatically." },
+      { speaker: "lead", text: "We currently miss a lot of after-hours leads." },
+      { speaker: "arya", text: "Exactly the problem we solve. With Arya, all after-hours inquiries get an instant call, qualification, and visit scheduling — zero human effort." },
+      { speaker: "lead", text: "How many visits can you drive per month?" },
+      { speaker: "arya", text: "Our clients typically see a 30–40% lift in site visits within the first 30 days. I'd love to show you the numbers — shall I send a case study to your email?" },
+    ],
+  },
+];
+const LIVE_METRICS = { calls: 847, qualified: 234, concurrent: 12 };
+
+const maskName = (name: string) =>
+  name.split(" ").map((p) => p[0] + "·".repeat(Math.min(p.length - 1, 4))).join(" ");
+const maskPhone = (phone: string) =>
+  phone.replace(/(\+\d{2})\s?\d{5}\s?(\d{5})/, "$1 ×××××$2");
+
 /* ─── Demo call thumbnails ──────────────────────────────── */
 const demoCalls = [
   {
@@ -457,6 +509,159 @@ function DemoCallsSection() {
           ))}
         </div>
       </div>
+    </section>
+  );
+}
+
+/* ─── The Problem Section ───────────────────────────────── */
+/* ─── Live Activity Section ─────────────────────────────── */
+function LiveActivitySection() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [scenarioIdx, setScenarioIdx] = useState(0);
+  const [bubbles, setBubbles] = useState<{ speaker: string; text: string; id: number }[]>([]);
+  const [isTyping, setIsTyping] = useState(false);
+  const [callSecs, setCallSecs] = useState(14);
+  const lineRef = useRef(0);
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!inView) return;
+    const scenario = CALL_SCENARIOS[scenarioIdx];
+    lineRef.current = 0;
+    setBubbles([]);
+    setCallSecs(14);
+    setIsTyping(false);
+
+    const timerInterval = setInterval(() => setCallSecs((s) => s + 1), 1000);
+
+    let lineTimeout: ReturnType<typeof setTimeout>;
+    let lineInterval: ReturnType<typeof setInterval>;
+
+    const addLine = () => {
+      const line = scenario.script[lineRef.current];
+      if (!line) {
+        setTimeout(() => setScenarioIdx((prev) => (prev + 1) % CALL_SCENARIOS.length), 3000);
+        return;
+      }
+      setIsTyping(true);
+      lineTimeout = setTimeout(() => {
+        setIsTyping(false);
+        setBubbles((prev) => [...prev, { ...line, id: Date.now() }]);
+        lineRef.current += 1;
+        setTimeout(() => {
+          if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        }, 50);
+      }, 1200);
+    };
+
+    addLine();
+    lineInterval = setInterval(addLine, 2800);
+
+    return () => {
+      clearInterval(timerInterval);
+      clearInterval(lineInterval);
+      clearTimeout(lineTimeout);
+    };
+  }, [inView, scenarioIdx]);
+
+  const scenario = CALL_SCENARIOS[scenarioIdx];
+  const mins = Math.floor(callSecs / 60).toString().padStart(2, "0");
+  const secs = (callSecs % 60).toString().padStart(2, "0");
+
+  return (
+    <section ref={ref} className="ta-section-padding" style={{ background: "#0a0a0a", padding: "100px 24px" }}>
+      <div className="container-site">
+        {/* Heading */}
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4.5vw, 60px)", fontWeight: 300, color: "#ffffff", margin: "0 0 16px", lineHeight: 1.1 }}>
+            Arya is working right now.
+          </motion.h2>
+          <motion.p initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.08 }}
+            style={{ fontSize: 16, color: "rgba(255,255,255,0.5)", maxWidth: 520, margin: "0 auto", lineHeight: 1.7, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+            Live conversation — Arya qualifying a real lead, right now.
+          </motion.p>
+        </div>
+
+        {/* Conversation Simulator */}
+        <motion.div initial={{ opacity: 0, y: 32 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.2 }}
+          className="ta-convo-wrapper" style={{ maxWidth: 960, margin: "0 auto", border: "1px solid rgba(255,255,255,0.1)", overflow: "hidden", display: "flex" }}>
+
+          {/* Left — call info panel */}
+          <div className="ta-convo-left" style={{ width: 260, flexShrink: 0, background: "#D95938", padding: "28px 24px", display: "flex", flexDirection: "column", gap: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#ffffff", display: "inline-block", boxShadow: "0 0 0 3px rgba(255,255,255,0.3)" }} />
+              <span style={{ fontSize: 11, fontWeight: 700, color: "#ffffff", letterSpacing: "0.12em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>LIVE CALL</span>
+            </div>
+            <div>
+              <p style={{ fontSize: 16, fontWeight: 600, color: "#ffffff", margin: "0 0 4px", fontFamily: "Bdogrotesk, Arial, sans-serif" }}>{maskName(scenario.caller)}</p>
+              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.75)", margin: "0 0 4px", fontFamily: "Plusjakartasans, Arial, sans-serif", letterSpacing: "0.04em" }}>{maskPhone(scenario.phone)}</p>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{scenario.industry}</p>
+            </div>
+            <div style={{ background: "rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.08)", padding: "12px 16px" }}>
+              <p style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", margin: "0 0 4px", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Duration</p>
+              <p style={{ fontSize: 22, fontWeight: 300, color: "#ffffff", margin: 0, fontFamily: "Bdogrotesk, Arial, sans-serif", letterSpacing: "0.05em" }}>{mins}:{secs}</p>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {[
+                { label: "Active concurrent", value: LIVE_METRICS.concurrent.toString() },
+                { label: "Calls today", value: LIVE_METRICS.calls.toString() },
+                { label: "Leads qualified", value: LIVE_METRICS.qualified.toString() },
+              ].map((m) => (
+                <div key={m.label} style={{ background: "rgba(0,0,0,0.1)", border: "1px solid rgba(0,0,0,0.08)", padding: "10px 14px" }}>
+                  <p style={{ fontSize: 10, color: "rgba(255,255,255,0.7)", margin: "0 0 2px", textTransform: "uppercase", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{m.label}</p>
+                  <p style={{ fontSize: 18, fontWeight: 300, color: "#ffffff", margin: 0, fontFamily: "Bdogrotesk, Arial, sans-serif" }}>{m.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — chat transcript */}
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", background: "#111111" }}>
+            <div style={{ padding: "16px 24px", borderBottom: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#D95938", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: "#ffffff", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>A</span>
+              </div>
+              <div>
+                <p style={{ fontSize: 13, fontWeight: 600, color: "#ffffff", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Arya</p>
+                <p style={{ fontSize: 11, color: "#22c55e", margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>● On call</p>
+              </div>
+            </div>
+            <div ref={chatRef} style={{ flex: 1, padding: "20px 24px", overflowY: "auto", display: "flex", flexDirection: "column", gap: 12, minHeight: 320, maxHeight: 320 }}>
+              <AnimatePresence>
+                {bubbles.map((b) => (
+                  <motion.div key={b.id}
+                    initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}
+                    style={{ display: "flex", justifyContent: b.speaker === "arya" ? "flex-start" : "flex-end" }}>
+                    <div style={{
+                      maxWidth: "75%", padding: "10px 14px",
+                      background: b.speaker === "arya" ? "rgba(217,89,56,0.12)" : "rgba(255,255,255,0.07)",
+                      border: b.speaker === "arya" ? "1px solid rgba(217,89,56,0.25)" : "1px solid rgba(255,255,255,0.1)",
+                    }}>
+                      <p style={{ fontSize: 11, color: b.speaker === "arya" ? "#D95938" : "rgba(255,255,255,0.5)", margin: "0 0 4px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                        {b.speaker === "arya" ? "Arya" : maskName(scenario.caller.split(" ")[0])}
+                      </p>
+                      <p style={{ fontSize: 14, color: "rgba(255,255,255,0.88)", margin: 0, lineHeight: 1.55, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>{b.text}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+              {isTyping && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  style={{ display: "flex", justifyContent: "flex-start" }}>
+                  <div style={{ padding: "10px 16px", background: "rgba(217,89,56,0.12)", border: "1px solid rgba(217,89,56,0.25)", display: "flex", gap: 4, alignItems: "center" }}>
+                    {[0, 1, 2].map((i) => (
+                      <span key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: "#D95938", display: "inline-block", animation: `liveBounce 1.2s ease-in-out ${i * 0.2}s infinite` }} />
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+      <style>{`@keyframes liveBounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-5px); } }`}</style>
     </section>
   );
 }
@@ -1257,6 +1462,9 @@ export default function TryAryaPage() {
 
         {/* ── Demo Calls ────────────────────────────────────── */}
         <DemoCallsSection />
+
+        {/* ── Live Activity ─────────────────────────────────── */}
+        <LiveActivitySection />
 
         {/* ── The Problem ───────────────────────────────────── */}
         <TheProblemSection />
