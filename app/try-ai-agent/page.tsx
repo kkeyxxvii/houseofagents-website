@@ -592,87 +592,82 @@ function HowAryaWorksSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section ref={ref} style={{ background: "#0a0a0a", overflow: "hidden" }}>
-      <div className="ta-how-arya-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 760 }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#0a0a0a", padding: "100px 24px" }}>
+      <div className="container-site">
 
-        {/* ── Left — content ── */}
-        <motion.div
-          initial={{ opacity: 0, x: -28 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.75 }}
-          className="ta-how-arya-content"
-          style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "88px 64px 88px max(24px, calc((100vw - 1400px) / 2 + 24px))" }}>
-
-          {/* Badge */}
+        {/* ── Heading block ── */}
+        <div style={{ maxWidth: 680, marginBottom: 72 }}>
           <motion.p
             initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4 }}
-            style={{ fontSize: 11, fontWeight: 600, color: "#D95938", textTransform: "uppercase", letterSpacing: "0.12em", margin: "0 0 20px", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+            style={{ fontSize: 11, fontWeight: 600, color: "#D95938", textTransform: "uppercase", letterSpacing: "0.14em", margin: "0 0 18px", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
             How she works
           </motion.p>
-
-          {/* Heading */}
-          <h2 className="ta-h2"
-            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 3.2vw, 52px)", fontWeight: 300, color: "#ffffff", margin: "0 0 2px", lineHeight: 1.08 }}>
+          <motion.h2 className="ta-h2"
+            initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55, delay: 0.05 }}
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 300, color: "#ffffff", margin: "0 0 4px", lineHeight: 1.08 }}>
             She doesn&apos;t just automate.
-          </h2>
-          <h2 className="ta-h2"
-            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 3.2vw, 52px)", fontWeight: 300, color: "#ffffff", margin: "0 0 20px", lineHeight: 1.08 }}>
+          </motion.h2>
+          <motion.h2 className="ta-h2"
+            initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55, delay: 0.1 }}
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 300, color: "#ffffff", margin: "0 0 20px", lineHeight: 1.08 }}>
             She <span style={{ color: "#D95938" }}>owns the funnel.</span>
-          </h2>
-          <p style={{ fontSize: 15, color: "rgba(255,255,255,0.45)", lineHeight: 1.75, margin: "0 0 52px", maxWidth: 440, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-            Every interaction makes her smarter. She remembers context, crosses channels, and works until the deal is closed.
-          </p>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.15 }}
+            style={{ fontSize: 16, color: "rgba(255,255,255,0.45)", lineHeight: 1.75, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+            Every interaction makes her smarter. She remembers context, crosses channels, and works relentlessly until the deal is closed.
+          </motion.p>
+        </div>
 
-          {/* Step list — left-border timeline style */}
-          <div style={{ display: "flex", flexDirection: "column", borderLeft: "1px solid rgba(217,89,56,0.3)" }}>
-            {howAryaSteps.map((step, i) => (
-              <motion.div key={step.num}
-                initial={{ opacity: 0, x: -12 }} animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.25 + i * 0.07 }}
-                style={{ display: "flex", gap: 20, padding: "20px 0 20px 24px", borderBottom: i < howAryaSteps.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none", alignItems: "flex-start", position: "relative" }}>
-                {/* Orange dot on timeline */}
-                <span style={{ position: "absolute", left: -5, top: 26, width: 9, height: 9, borderRadius: "50%", background: "#D95938", flexShrink: 0 }} />
-                <span style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 12, fontWeight: 600, color: "#D95938", letterSpacing: "0.06em", flexShrink: 0, minWidth: 24, paddingTop: 2 }}>
-                  {step.num}
-                </span>
-                <div>
-                  <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 16, fontWeight: 400, color: "#ffffff", margin: "0 0 5px", lineHeight: 1.35 }}>
-                    {step.title}
-                  </h4>
-                  <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.38)", lineHeight: 1.7, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-                    {step.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* ── 3×2 bento grid of step cards ── */}
+        <div className="ta-steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
+          {howAryaSteps.map((step, i) => (
+            <motion.div key={step.num}
+              initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.07 }}
+              style={{ position: "relative", background: "#111111", padding: "36px 32px 32px", overflow: "hidden", borderTop: "2px solid rgba(217,89,56,0.5)" }}>
 
-        {/* ── Right — Arya video (edge-to-edge on right side) ── */}
-        <motion.div
-          initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 1, delay: 0.15 }}
-          style={{ position: "relative", overflow: "hidden" }}
-          className="ta-how-arya-video">
+              {/* Watermark number — large faded bg element */}
+              <span style={{
+                position: "absolute", top: -16, right: 16,
+                fontFamily: "Bdogrotesk, Arial, sans-serif",
+                fontSize: 120, fontWeight: 700,
+                color: "rgba(217,89,56,0.07)",
+                lineHeight: 1, userSelect: "none", pointerEvents: "none",
+                letterSpacing: "-0.02em",
+              }}>
+                {step.num}
+              </span>
 
-          <video autoPlay muted loop playsInline
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}>
-            <source src={ARYA_VIDEO} type="video/mp4" />
-          </video>
+              {/* Step chip */}
+              <span style={{
+                display: "inline-block", fontSize: 11, fontWeight: 700, color: "#D95938",
+                letterSpacing: "0.1em", marginBottom: 20,
+                fontFamily: "Plusjakartasans, Arial, sans-serif",
+              }}>
+                {step.num}
+              </span>
 
-          {/* Multi-directional gradient */}
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.05) 35%), linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 50%)" }} />
+              {/* Title */}
+              <h4 style={{
+                fontFamily: "Bdogrotesk, Arial, sans-serif",
+                fontSize: 18, fontWeight: 400, color: "#ffffff",
+                margin: "0 0 12px", lineHeight: 1.35,
+              }}>
+                {step.title}
+              </h4>
 
-          {/* LIVE badge — top right */}
-          <div style={{ position: "absolute", top: 20, right: 20, display: "flex", alignItems: "center", gap: 7, background: "rgba(0,0,0,0.55)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.12)", padding: "6px 14px" }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 0 3px rgba(34,197,94,0.25)", flexShrink: 0 }} />
-            <span style={{ fontSize: 10, fontWeight: 700, color: "#ffffff", letterSpacing: "0.12em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>LIVE</span>
-          </div>
-
-          {/* Bottom caption */}
-          <div style={{ position: "absolute", bottom: 28, left: 28, right: 28 }}>
-            <p style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 22, fontWeight: 300, color: "#ffffff", margin: 0, lineHeight: 1.25 }}>
-              Arya, owning<br />the funnel.
-            </p>
-          </div>
-        </motion.div>
+              {/* Description */}
+              <p style={{
+                fontSize: 14, color: "rgba(255,255,255,0.42)",
+                lineHeight: 1.75, margin: 0,
+                fontFamily: "Plusjakartasans, Arial, sans-serif",
+              }}>
+                {step.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
 
       </div>
     </section>

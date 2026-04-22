@@ -254,19 +254,7 @@ h1 {
   .ta-convo-left { display: none !important; }
   .ta-convo-wrapper { display: block !important; }
   .ta-talk-grid { grid-template-columns: 1fr !important; }
-  .ta-how-arya-grid {
-    grid-template-columns: 1fr !important;
-    min-height: auto !important;
-  }
-  .ta-how-arya-video {
-    min-height: 300px !important;
-    height: 300px !important;
-    order: -1 !important;
-    width: 100% !important;
-  }
-  .ta-how-arya-content {
-    padding: 48px 24px !important;
-  }
+  .ta-steps-grid { grid-template-columns: 1fr !important; }
   .ta-hero-padding { padding-top: 40px !important; padding-bottom: 40px !important; }
   .ta-section-padding { padding-top: 64px !important; padding-bottom: 64px !important; }
   .ta-h1 { font-size: clamp(32px, 8vw, 52px) !important; }
