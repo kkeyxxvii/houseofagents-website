@@ -1266,11 +1266,14 @@ export default function TryAryaPage() {
 
           <div className="ta-hero-inner" style={{ position: "relative", minHeight: "calc(100vh - 69px)", display: "flex", flexDirection: "column" }}>
 
+            {/* Container — aligns with navbar edges */}
+            <div className="container-site" style={{ flex: 1, display: "flex", flexDirection: "column", paddingTop: 0, paddingBottom: 0 }}>
+
             {/* Main 2-col grid */}
             <div className="ta-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", flex: 1, minHeight: 0, alignItems: "stretch" }}>
 
               {/* ── Left ── */}
-              <div className="ta-hero-left-pad" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "64px 56px 64px 64px" }}>
+              <div className="ta-hero-left-pad" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px 40px 80px 0" }}>
 
                 {/* H1 */}
                 <h1 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4.8vw, 72px)", fontWeight: 400, color: "#000000", lineHeight: 1.04, margin: "0 0 28px", letterSpacing: "-0.01em" }}>
@@ -1283,7 +1286,7 @@ export default function TryAryaPage() {
                 <p style={{ fontSize: 16, color: "#555555", lineHeight: 1.75, marginBottom: 12, maxWidth: 500, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                   Calls, qualifies, and closes leads across Voice, WhatsApp &amp; Email — with shared memory, real-time objection handling, and one relentless goal: run your revenue.
                 </p>
-                <p style={{ fontSize: 15, color: "#999999", lineHeight: 1.6, marginBottom: 40, maxWidth: 480, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                <p style={{ fontSize: 15, color: "#666666", lineHeight: 1.6, marginBottom: 40, maxWidth: 480, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                   Enterprise-grade AI that works 24/7, on autopilot.
                 </p>
 
@@ -1301,8 +1304,8 @@ export default function TryAryaPage() {
               </div>
 
               {/* ── Right — floating rounded card ── */}
-              <div className="ta-hero-video" style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 48px 40px 16px" }}>
-                <div className="ta-hero-video-card" style={{ position: "relative", width: "100%", maxWidth: 420, height: "calc(100% - 0px)", minHeight: 480, borderRadius: 0, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.08)" }}>
+              <div className="ta-hero-video" style={{ display: "flex", padding: "32px 0" }}>
+                <div className="ta-hero-video-card" style={{ position: "relative", flex: 1, minHeight: 480, borderRadius: 0, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.08)" }}>
 
                   {/* Video */}
                   <video autoPlay muted loop playsInline
@@ -1342,6 +1345,8 @@ export default function TryAryaPage() {
                 </div>
               </div>
             </div>
+
+            </div>{/* /container-site */}
 
             {/* Logo marquee — light, pinned at bottom */}
             <LogoMarquee />
