@@ -259,10 +259,13 @@ h1 {
     min-height: auto !important;
   }
   .ta-how-arya-video {
-    min-height: 280px !important;
-    height: 280px !important;
+    min-height: 300px !important;
+    height: 300px !important;
     order: -1 !important;
     width: 100% !important;
+  }
+  .ta-how-arya-content {
+    padding: 48px 24px !important;
   }
   .ta-hero-padding { padding-top: 40px !important; padding-bottom: 40px !important; }
   .ta-section-padding { padding-top: 64px !important; padding-bottom: 64px !important; }

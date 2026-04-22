@@ -32,7 +32,7 @@ export default function LogoMarquee({ dark }: { dark?: boolean }) {
   const doubled = [...logos, ...logos];
 
   return (
-    <div className={`overflow-hidden ${dark ? "bg-transparent" : "py-4 border-y border-border bg-surface"}`}>
+    <div className={`overflow-hidden ${dark ? "bg-transparent" : "py-4"}`}>
       <div className="relative">
         {/* Left fade */}
         <div

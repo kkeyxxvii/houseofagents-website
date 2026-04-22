@@ -593,44 +593,51 @@ function HowAryaWorksSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
     <section ref={ref} style={{ background: "#0a0a0a", overflow: "hidden" }}>
-      <div className="ta-2col ta-how-arya-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 700 }}>
+      <div className="ta-how-arya-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", minHeight: 760 }}>
 
-        {/* ── Left — heading + steps ── */}
+        {/* ── Left — content ── */}
         <motion.div
-          initial={{ opacity: 0, x: -24 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.7 }}
-          style={{ padding: "80px 56px 80px 0", display: "flex", flexDirection: "column", justifyContent: "center" }}
-          className="ta-hero-left-pad">
+          initial={{ opacity: 0, x: -28 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.75 }}
+          className="ta-how-arya-content"
+          style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "88px 64px 88px max(24px, calc((100vw - 1400px) / 2 + 24px))" }}>
+
+          {/* Badge */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4 }}
+            style={{ fontSize: 11, fontWeight: 600, color: "#D95938", textTransform: "uppercase", letterSpacing: "0.12em", margin: "0 0 20px", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+            How she works
+          </motion.p>
 
           {/* Heading */}
-          <div style={{ marginBottom: 52 }}>
-            <h2 className="ta-h2"
-              style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 3.5vw, 52px)", fontWeight: 300, color: "#ffffff", margin: "0 0 4px", lineHeight: 1.08 }}>
-              She doesn&apos;t just automate.
-            </h2>
-            <h2 className="ta-h2"
-              style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 3.5vw, 52px)", fontWeight: 300, color: "#ffffff", margin: "0 0 20px", lineHeight: 1.08 }}>
-              She <span style={{ color: "#D95938" }}>owns the funnel.</span>
-            </h2>
-            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.5)", lineHeight: 1.7, margin: 0, maxWidth: 420, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-              Every interaction makes her sharper. She learns, remembers, and picks up exactly where she left off — months later.
-            </p>
-          </div>
+          <h2 className="ta-h2"
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 3.2vw, 52px)", fontWeight: 300, color: "#ffffff", margin: "0 0 2px", lineHeight: 1.08 }}>
+            She doesn&apos;t just automate.
+          </h2>
+          <h2 className="ta-h2"
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 3.2vw, 52px)", fontWeight: 300, color: "#ffffff", margin: "0 0 20px", lineHeight: 1.08 }}>
+            She <span style={{ color: "#D95938" }}>owns the funnel.</span>
+          </h2>
+          <p style={{ fontSize: 15, color: "rgba(255,255,255,0.45)", lineHeight: 1.75, margin: "0 0 52px", maxWidth: 440, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+            Every interaction makes her smarter. She remembers context, crosses channels, and works until the deal is closed.
+          </p>
 
-          {/* Vertical step list */}
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          {/* Step list — left-border timeline style */}
+          <div style={{ display: "flex", flexDirection: "column", borderLeft: "1px solid rgba(217,89,56,0.3)" }}>
             {howAryaSteps.map((step, i) => (
               <motion.div key={step.num}
-                initial={{ opacity: 0, x: -16 }} animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.45, delay: 0.2 + i * 0.07 }}
-                style={{ display: "flex", gap: 20, padding: "18px 0", borderBottom: i < howAryaSteps.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none", alignItems: "flex-start" }}>
-                <span style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 22, fontWeight: 300, color: "#D95938", lineHeight: 1, flexShrink: 0, width: 32, paddingTop: 2 }}>
+                initial={{ opacity: 0, x: -12 }} animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.25 + i * 0.07 }}
+                style={{ display: "flex", gap: 20, padding: "20px 0 20px 24px", borderBottom: i < howAryaSteps.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none", alignItems: "flex-start", position: "relative" }}>
+                {/* Orange dot on timeline */}
+                <span style={{ position: "absolute", left: -5, top: 26, width: 9, height: 9, borderRadius: "50%", background: "#D95938", flexShrink: 0 }} />
+                <span style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 12, fontWeight: 600, color: "#D95938", letterSpacing: "0.06em", flexShrink: 0, minWidth: 24, paddingTop: 2 }}>
                   {step.num}
                 </span>
                 <div>
-                  <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 15, fontWeight: 400, color: "#ffffff", margin: "0 0 4px", lineHeight: 1.3 }}>
+                  <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 16, fontWeight: 400, color: "#ffffff", margin: "0 0 5px", lineHeight: 1.35 }}>
                     {step.title}
                   </h4>
-                  <p style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.65, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                  <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.38)", lineHeight: 1.7, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                     {step.desc}
                   </p>
                 </div>
@@ -639,21 +646,31 @@ function HowAryaWorksSection() {
           </div>
         </motion.div>
 
-        {/* ── Right — video visual ── */}
+        {/* ── Right — Arya video (edge-to-edge on right side) ── */}
         <motion.div
-          initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.9, delay: 0.1 }}
-          style={{ position: "relative", overflow: "hidden", minHeight: 500 }}
+          initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 1, delay: 0.15 }}
+          style={{ position: "relative", overflow: "hidden" }}
           className="ta-how-arya-video">
+
           <video autoPlay muted loop playsInline
             style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" }}>
             <source src={ARYA_VIDEO} type="video/mp4" />
           </video>
-          {/* Dark overlay for readability */}
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.5) 0%, transparent 40%), linear-gradient(to top, rgba(10,10,10,0.6) 0%, transparent 50%)" }} />
-          {/* Bottom label */}
+
+          {/* Multi-directional gradient */}
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.05) 35%), linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 50%)" }} />
+
+          {/* LIVE badge — top right */}
+          <div style={{ position: "absolute", top: 20, right: 20, display: "flex", alignItems: "center", gap: 7, background: "rgba(0,0,0,0.55)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.12)", padding: "6px 14px" }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 0 3px rgba(34,197,94,0.25)", flexShrink: 0 }} />
+            <span style={{ fontSize: 10, fontWeight: 700, color: "#ffffff", letterSpacing: "0.12em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>LIVE</span>
+          </div>
+
+          {/* Bottom caption */}
           <div style={{ position: "absolute", bottom: 28, left: 28, right: 28 }}>
-            <p style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: "0.12em", margin: "0 0 6px", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>Live</p>
-            <p style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 20, fontWeight: 300, color: "#ffffff", margin: 0, lineHeight: 1.2 }}>Arya, on a real call right now.</p>
+            <p style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 22, fontWeight: 300, color: "#ffffff", margin: 0, lineHeight: 1.25 }}>
+              Arya, owning<br />the funnel.
+            </p>
           </div>
         </motion.div>
 
@@ -915,49 +932,55 @@ function TalkToAryaSection() {
 
 /* ─── Launch Video Section ──────────────────────────────── */
 /* ─── Features Section ──────────────────────────────────── */
+// Exact illustration images from houseofagents.ai/try-ai-agent (CDN1)
 const featureIllustrations = [
-  `${CDN2}/68e370db885561bc786e1d4f_wealth%20management%20usecase.avif`,
-  `${CDN2}/68e370ceb43b7ba5414acad6_Real%20Estate.avif`,
-  `${CDN2}/68e37085f83cb0624df62209_Upsell%20Services.avif`,
-  `${CDN2}/68e37095a276b3c16c819a5a_EdTech.avif`,
-  `${CDN2}/68e370bc34626e384285da5c_DSA%20pre%20qualification.avif`,
-  `${CDN2}/68e370ac23fb79cadf384014_SIP%20upgrade.avif`,
+  `${CDN}/68b1484200a0bc8309028504_67368480c2cd1d0b8e9ce4dcf9d20589_try-ai-card-imgs-new%20%281%29.avif`,  // 24/7 Calling
+  `${CDN}/68b14842a76899261b2e6b9d_3a879829deabb3d321fe220eccd362f4_try-ai-card-imgs-new%20%284%29.avif`,  // Scaling effortlessly
+  `${CDN}/68b1484259d7f1762e80e514_f078adf0716728fe15a2c5d7840926cc_try-ai-card-imgs-new%20%283%29.avif`,  // Plug Into Your Workflow
+  `${CDN}/68b148425fd6c45a323c193b_25f7f9b2168a46c6373398041466269a_try-ai-card-imgs-new%20%282%29.avif`,  // Instant Qualification & Routing
+  `${CDN}/68b148f9dc50846c43e9e5c9_7df2d50523af5e85da52b955deac91b1_try-ai-card-imgs-new%20%285%29.avif`,  // Multilingual Fluency
+  `${CDN}/68b1484369de1354b545fdf3_03cca03de0aec2203b5eb5fb6f04dc7c_try-ai-card-imgs-new%20%281%29.avif`,  // Follow-up on Autopilot
 ];
 
 function FeaturesSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section ref={ref} className="ta-section-padding" style={{ background: "#f8f7f7", padding: "100px 24px" }}>
+    <section ref={ref} className="ta-section-padding" style={{ background: "#ffffff", padding: "100px 24px" }}>
       <div className="container-site">
-        <div style={{ textAlign: "center", marginBottom: 64 }}>
+        {/* Heading */}
+        <div style={{ textAlign: "center", marginBottom: 56 }}>
           <motion.h2 initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}
             style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(36px, 4vw, 58px)", fontWeight: 300, color: "#000000", margin: 0, lineHeight: 1.1 }}>
             Arya is capable of
           </motion.h2>
         </div>
-        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+
+        {/* 3-col grid — image first, then title + desc */}
+        <div className="ta-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
           {features.map((f, i) => (
             <motion.div key={f.title}
-              initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.05 + i * 0.08 }}
-              style={{ background: "#ffffff", border: "1px solid #e5e5e5", display: "flex", flexDirection: "column", overflow: "hidden" }}>
-              {/* Illustration */}
-              <div style={{ position: "relative", aspectRatio: "16/10", overflow: "hidden", background: "#111", flexShrink: 0 }}>
-                <Image src={featureIllustrations[i]} alt={f.title} fill
-                  style={{ objectFit: "cover", transition: "transform 0.5s ease" }} unoptimized />
-                <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.18)" }} />
-                {/* Small icon badge */}
-                <div style={{ position: "absolute", top: 14, left: 14, width: 36, height: 36, background: "#D95938", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <Image src={f.icon} alt="" width={20} height={20} style={{ width: 20, height: 20, filter: "brightness(0) invert(1)" }} unoptimized />
-                </div>
+              initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.05 + i * 0.07 }}
+              style={{ display: "flex", flexDirection: "column", overflow: "hidden", background: "#ffffff" }}>
+
+              {/* Illustration — top, fills card width */}
+              <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", overflow: "hidden", background: "#f5f0eb", flexShrink: 0 }}>
+                <Image
+                  src={featureIllustrations[i]}
+                  alt={f.title}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  unoptimized
+                />
               </div>
-              {/* Content */}
-              <div style={{ padding: "24px 28px 28px" }}>
-                <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 19, fontWeight: 400, color: "#000", margin: "0 0 10px", lineHeight: 1.25 }}>
+
+              {/* Text content */}
+              <div style={{ padding: "24px 4px 8px" }}>
+                <h4 style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: 20, fontWeight: 400, color: "#1a1a1a", margin: "0 0 10px", lineHeight: 1.25 }}>
                   {f.title}
                 </h4>
-                <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                <p style={{ fontSize: 14, color: "#555555", lineHeight: 1.7, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
                   {f.desc}
                 </p>
               </div>
