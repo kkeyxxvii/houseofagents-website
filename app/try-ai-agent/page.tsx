@@ -800,71 +800,64 @@ function HowAryaWorksSection() {
     <section ref={ref} className="ta-section-padding" style={{ background: "#0a0a0a", padding: "100px 24px" }}>
       <div className="container-site">
 
-        {/* ── Heading block ── */}
-        <div style={{ maxWidth: 680, marginBottom: 72 }}>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4 }}
-            style={{ fontSize: 11, fontWeight: 600, color: "#D95938", textTransform: "uppercase", letterSpacing: "0.14em", margin: "0 0 18px", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
-            How she works
-          </motion.p>
+        {/* ── Heading block — centered ── */}
+        <div style={{ textAlign: "center", marginBottom: 72 }}>
           <motion.h2 className="ta-h2"
-            initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55, delay: 0.05 }}
-            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 300, color: "#ffffff", margin: "0 0 4px", lineHeight: 1.08 }}>
+            initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55 }}
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 60px)", fontWeight: 300, color: "#ffffff", margin: "0 0 4px", lineHeight: 1.08 }}>
             She doesn&apos;t just automate.
           </motion.h2>
           <motion.h2 className="ta-h2"
-            initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55, delay: 0.1 }}
-            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", fontWeight: 300, color: "#ffffff", margin: "0 0 20px", lineHeight: 1.08 }}>
+            initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.55, delay: 0.07 }}
+            style={{ fontFamily: "Bdogrotesk, Arial, sans-serif", fontSize: "clamp(32px, 4vw, 60px)", fontWeight: 300, color: "#ffffff", margin: "0 0 24px", lineHeight: 1.08 }}>
             She <span style={{ color: "#D95938" }}>owns the funnel.</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.15 }}
-            style={{ fontSize: 16, color: "rgba(255,255,255,0.45)", lineHeight: 1.75, margin: 0, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+            initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.12 }}
+            style={{ fontSize: 16, color: "rgba(255,255,255,0.45)", lineHeight: 1.75, margin: "0 auto", maxWidth: 560, fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
             Every interaction makes her smarter. She remembers context, crosses channels, and works relentlessly until the deal is closed.
           </motion.p>
         </div>
 
-        {/* ── 3×2 bento grid of step cards ── */}
-        <div className="ta-steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2 }}>
+        {/* ── 3×2 step cards ── */}
+        <div className="ta-steps-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
           {howAryaSteps.map((step, i) => (
             <motion.div key={step.num}
-              initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+              initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.07 }}
-              style={{ position: "relative", background: "#111111", padding: "36px 32px 32px", overflow: "hidden", borderTop: "2px solid rgba(217,89,56,0.5)" }}>
+              style={{ position: "relative", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", padding: "36px 32px 36px", overflow: "hidden" }}>
 
-              {/* Watermark number — large faded bg element */}
+              {/* Watermark number */}
               <span style={{
-                position: "absolute", top: -16, right: 16,
+                position: "absolute", bottom: -24, right: 12,
                 fontFamily: "Bdogrotesk, Arial, sans-serif",
-                fontSize: 120, fontWeight: 700,
-                color: "rgba(217,89,56,0.07)",
+                fontSize: 140, fontWeight: 700,
+                color: "rgba(217,89,56,0.06)",
                 lineHeight: 1, userSelect: "none", pointerEvents: "none",
-                letterSpacing: "-0.02em",
               }}>
                 {step.num}
               </span>
 
-              {/* Step chip */}
-              <span style={{
-                display: "inline-block", fontSize: 11, fontWeight: 700, color: "#D95938",
-                letterSpacing: "0.1em", marginBottom: 20,
-                fontFamily: "Plusjakartasans, Arial, sans-serif",
-              }}>
-                {step.num}
-              </span>
+              {/* Orange accent dot + number */}
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 24 }}>
+                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#D95938", flexShrink: 0 }} />
+                <span style={{ fontSize: 12, fontWeight: 700, color: "#D95938", letterSpacing: "0.1em", fontFamily: "Plusjakartasans, Arial, sans-serif" }}>
+                  {step.num}
+                </span>
+              </div>
 
               {/* Title */}
               <h4 style={{
                 fontFamily: "Bdogrotesk, Arial, sans-serif",
-                fontSize: 18, fontWeight: 400, color: "#ffffff",
-                margin: "0 0 12px", lineHeight: 1.35,
+                fontSize: 19, fontWeight: 400, color: "#ffffff",
+                margin: "0 0 14px", lineHeight: 1.3,
               }}>
                 {step.title}
               </h4>
 
               {/* Description */}
               <p style={{
-                fontSize: 14, color: "rgba(255,255,255,0.42)",
+                fontSize: 14, color: "rgba(255,255,255,0.4)",
                 lineHeight: 1.75, margin: 0,
                 fontFamily: "Plusjakartasans, Arial, sans-serif",
               }}>
@@ -1164,8 +1157,8 @@ function FeaturesSection() {
               transition={{ duration: 0.5, delay: 0.05 + i * 0.07 }}
               style={{ display: "flex", flexDirection: "column" }}>
 
-              {/* Illustration — 4:3 ratio, contain so full mockup is visible */}
-              <div style={{ position: "relative", width: "100%", aspectRatio: "4/3", background: "#f5f0eb", flexShrink: 0, overflow: "hidden" }}>
+              {/* Illustration — fixed 272px height, contain so full mockup is visible */}
+              <div style={{ position: "relative", width: "100%", height: 272, background: "#f5f0eb", flexShrink: 0, overflow: "hidden" }}>
                 <Image
                   src={featureIllustrations[i]}
                   alt={f.title}
