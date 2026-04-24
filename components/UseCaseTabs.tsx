@@ -131,7 +131,7 @@ export default function UseCaseTabs() {
         </div>
 
         {/* Tab selector */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 0, marginBottom: 40 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 0, marginBottom: 40, justifyContent: "center" }}>
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -173,7 +173,7 @@ export default function UseCaseTabs() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="bg-white rounded-3xl border border-border p-8 lg:p-12"
+            className="bg-white border border-border p-8 lg:p-12"
           >
             <div className="flex flex-col lg:flex-row gap-10 mb-10">
               <div className="flex-1">
@@ -187,7 +187,7 @@ export default function UseCaseTabs() {
                   alt="AI agent workflow illustration"
                   width={320}
                   height={240}
-                  className="w-full rounded-2xl object-cover"
+                  className="w-full object-cover"
                   unoptimized
                 />
               </div>

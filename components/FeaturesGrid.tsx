@@ -83,7 +83,7 @@ export default function FeaturesGrid() {
                 fontWeight: 400,
                 textTransform: "uppercase",
                 letterSpacing: "0.04em",
-                borderRadius: 2,
+                borderRadius: 0,
                 background: "#D95938",
                 color: "#F8F7F7",
                 textDecoration: "none",

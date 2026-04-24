@@ -183,7 +183,7 @@ export default function Testimonials() {
           <div className="flex items-center justify-center gap-4 mt-6">
             <button
               onClick={prev}
-              className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-[#D95938] hover:text-[#D95938] transition-colors"
+              className="w-10 h-10 border border-border flex items-center justify-center hover:border-[#D95938] hover:text-[#D95938] transition-colors"
             >
               ←
             </button>
@@ -192,7 +192,7 @@ export default function Testimonials() {
                 <button
                   key={i}
                   onClick={() => setActive(i)}
-                  className={`w-2 h-2 rounded-full transition-all ${
+                  className={`w-2 h-2 transition-all ${
                     i === active ? "bg-[#D95938] w-5" : "bg-border"
                   }`}
                 />
@@ -200,7 +200,7 @@ export default function Testimonials() {
             </div>
             <button
               onClick={next}
-              className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-[#D95938] hover:text-[#D95938] transition-colors"
+              className="w-10 h-10 border border-border flex items-center justify-center hover:border-[#D95938] hover:text-[#D95938] transition-colors"
             >
               →
             </button>

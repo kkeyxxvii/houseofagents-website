@@ -78,7 +78,7 @@ export default function CtaBanner() {
                   fontSize: 16,
                   fontWeight: 400,
                   textTransform: "uppercase",
-                  borderRadius: 2,
+                  borderRadius: 0,
                   background: "#D95938",
                   color: "#F8F7F7",
                   textDecoration: "none",
